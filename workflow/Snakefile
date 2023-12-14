@@ -1,0 +1,26 @@
+config: "config.yml"
+
+report: "report/workflow.rst"
+
+rule all:
+        input:
+                ""
+
+rule install_packages:
+        env:
+                r_packages.yml
+        shell:
+                """
+                Rscript -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')" &&
+                Rscript -e "BiocManager::install(c('DESeq2', 'GEOquery', 'canvasXpress', 'ggplot2', 'clinfun', 'GGally', 'factoextra'))"
+                """
+
+rule get_data:
+        env:
+                r_packages.yml
+        input:
+                config[dataset]
+        output:
+                
+        
+        
