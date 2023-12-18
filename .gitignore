@@ -1,0 +1,2 @@
+.snakemake/**
+.raw_reads.gz

@@ -1,0 +1,14 @@
+channels:
+ - conda-forge
+ - r
+ - bioconda
+dependencies:
+ - r-base
+ - r-canvasxpress
+ - r-ggplot2
+ - r-clinfun
+ - r-ggally
+ - r-factoextra
+ - bioconductor-deseq2
+ - bioconductor-geoquery
+

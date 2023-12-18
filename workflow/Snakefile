@@ -1,26 +1,21 @@
-config: "config.yml"
+configfile: "config/config.yaml"
 
 report: "report/workflow.rst"
 
 rule all:
         input:
-                ""
+                "results/Rplots.pdf"
 
-rule install_packages:
-        env:
-                r_packages.yml
-        shell:
-                """
-                Rscript -e "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')" &&
-                Rscript -e "BiocManager::install(c('DESeq2', 'GEOquery', 'canvasXpress', 'ggplot2', 'clinfun', 'GGally', 'factoextra'))"
-                """
 
-rule get_data:
-        env:
-                r_packages.yml
+rule whole_r_script:
+        conda:
+                "envs/r_packages.yaml"
         input:
-                config[dataset]
+                "resources/GSE152075_raw_counts_GEO.txt.gz"
         output:
+                report("results/Rplots.pdf", caption="report/workflow.rst", category="Whole script")
+        script:
+                "scripts/whole_script.R"
                 
         
         
