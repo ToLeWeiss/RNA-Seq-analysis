@@ -1,11 +1,4 @@
 ####
-
-# if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
-
-#BiocManager::install(c("DESeq2", "GEOquery", "canvasXpress", "ggplot2",
-#                       "clinfun", "GGally", "factoextra"), force=TRUE)
-
-####
 {
    library(DESeq2)
    library(GEOquery)
@@ -16,7 +9,6 @@
    library(factoextra)
 }
 
-print(snakemake@config[["geo_dataset"]])
 pdf(snakemake@output[[1]])
 ####
 data <- getGEO(GEO = snakemake@config[["geo_dataset"]])
