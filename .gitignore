@@ -1,2 +1,5 @@
 .snakemake/**
-.raw_reads.gz
+raw_reads.gz
+raw_counts.txt
+clindata.csv
+norm_counts.csv

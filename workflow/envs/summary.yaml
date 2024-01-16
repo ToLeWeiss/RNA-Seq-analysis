@@ -1,0 +1,6 @@
+channels:
+ - conda-forge
+ - r
+dependencies:
+ - r-base
+ - r-qpdf

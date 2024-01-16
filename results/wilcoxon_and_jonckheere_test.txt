@@ -1,0 +1,14 @@
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  unlist(norm_counts["MX1", ]) by clindata$positivity
+W = 17802, p-value = 1.651e-10
+alternative hypothesis: true location shift is not equal to 0
+
+
+	Jonckheere-Terpstra test
+
+data:  
+JT = 30442, p-value = 0.002
+alternative hypothesis: decreasing
+

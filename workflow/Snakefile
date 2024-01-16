@@ -4,18 +4,116 @@ report: "report/workflow.rst"
 
 rule all:
         input:
-                "results/Rplots.pdf"
+                "results/summary.pdf",
+                "results/wilcoxon_and_jonckheere_test.txt"
 
 
-rule whole_r_script:
+rule load_data_and_annotate_data:
         conda:
-                "envs/r_packages.yaml"
+                "envs/data_loading.yaml"
         input:
                 "resources/GSE152075_raw_counts_GEO.txt.gz"
         output:
-                report("results/Rplots.pdf", caption="report/workflow.rst", category="Whole script")
+                "norm_counts.csv",
+                "clindata.csv",
+                "raw_counts.txt"
         script:
-                "scripts/whole_script.R"
-                
-        
-        
+                "scripts/data_loading_and_annotation.R"
+
+
+rule plot_MX1:
+        conda:
+                "envs/plotting.yaml"
+        input:
+                "norm_counts.csv",
+                "clindata.csv"
+        output:
+                report(
+                        "results/MX1_plot.pdf",
+                        caption="report/MX1_plot.rst", 
+                        category="Step 2"
+                )
+        script:
+                "scripts/plot_MX1.R"
+
+
+rule wilcoxon_and_jonckheere_test:
+        conda:
+                "envs/wilcoxon_and_jonckheere_test.yaml"
+        input:
+                "norm_counts.csv",
+                "clindata.csv"
+        output:
+                report(
+                        "results/wilcoxon_and_jonckheere_test.txt",
+                        caption="report/wilcoxon_and_jonckheere.rst",
+                        category="Step 3"
+                )
+        script:
+                "scripts/wilcoxon_and_jonckheere_test.R"
+
+
+rule plot_MX1_and_MX2:
+        conda:
+                "envs/plotting.yaml"
+        input:
+                "norm_counts.csv",
+                "clindata.csv"
+        output:
+                report(
+                        "results/MX1_MX2_plot.pdf",
+                        caption="report/MX1_MX2_plot.rst",
+                        category="Step 4"
+                )
+        script:
+                "scripts/plot_MX1_MX2.R"
+
+
+rule PCA_and_3D_plot:
+        conda:
+                "envs/PCA_and_3D_plot.yaml"
+        input:
+                "norm_counts.csv",
+                "clindata.csv"
+        output:
+                report(
+                        "results/3D_plot_of_PCA.pdf",
+                        caption="report/PCA_and_3D_plot.rst",
+                        category="Step 4"
+                )
+        script:
+                "scripts/PCA_and_3D_plot.R"
+
+
+rule histogram_of_selected_data:
+        conda:
+                "envs/only_r.yaml"
+        input:
+                "norm_counts.csv",
+                "clindata.csv",
+                "raw_counts.txt"
+        output:
+                report(
+                        "results/histogram.pdf",
+                        caption="report/histogram.rst",
+                        category="Step 5"
+                )
+        script:
+                "scripts/histogram.R"
+
+rule summarize_results:
+        conda:
+                "envs/summary.yaml"
+        input:
+                "results/MX1_plot.pdf",
+                "results/MX1_MX2_plot.pdf",
+                "results/3D_plot_of_PCA.pdf",
+                "results/histogram.pdf"
+        output:
+                report(
+                        "results/summary.pdf",
+                        caption="report/summary.rst",
+                        category="Step 6"
+                )
+        script:
+                "scripts/summarize_results.R"
