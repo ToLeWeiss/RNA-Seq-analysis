@@ -1,55 +1,57 @@
 library(GEOquery)
 library(DESeq2)
 
-####
+# Retrieve data from GEO database
 data <- getGEO(GEO = snakemake@config[["geo_dataset"]])
 
-head(data)
-head(data$GSE152075_series_matrix.txt.gz@phenoData@data[,c(1,2,8,40,39,42)])
-
-####
-
+# Extract clinical data from the GEO dataset
 clindata <- data[["GSE152075_series_matrix.txt.gz"]]@phenoData@data
 
+if (snakemake@config[["is_raw_data_locally"]] == FALSE) {
+   # Get raw counts data from GEO database
+   dataset = snakemake@config[["geo_dataset"]]
+   url = sprintf("https://www.ncbi.nlm.nih.gov/geo/download/?acc=%s&format=file&file=%s_raw_counts_GEO.txt.gz",
+      dataset, dataset)
+   download.file(url, "resources/raw_reads.gz")
+   # Read raw count data from file
+   raw_counts <- read.delim("resources/raw_reads.gz", stringsAsFactors=FALSE, sep = " ")
+} else {
+   raw_counts <- read.delim(snakemake@config[["local_raw_data_path"]], stringsAsFactors=FALSE, sep = " ")
+}
 
-
-####
-
-raw_counts <- read.delim(snakemake@input[[1]], stringsAsFactors=FALSE, sep = " ")
-
-####
-
+# Convert raw counts to matrix
 raw_counts <- as.matrix(raw_counts)
+
+# Check if row names of clinical data are in column names of raw counts
 rownames(clindata) <- clindata$title
 all(rownames(clindata) %in% colnames(raw_counts))
+
+# Check if column names of raw counts are in row names of clinical data
 all(colnames(raw_counts) %in% rownames(clindata))
 
-
+# Rename columns in clinical data
 colnames(clindata)[colnames(clindata) == "sequencing_batch:ch1"] <- "batch"
 clindata$batch = as.factor(clindata$batch)
-colnames(clindata)[colnames(clindata) == "n1_ct:ch1"] <- "ct"
-colnames(clindata)[colnames(clindata) == "sars-cov-2 positivity:ch1"] <- "positivity"
-clindata$positivity[clindata$positivity == "pos"] <- "COVID19"
-clindata$positivity[clindata$positivity == "neg"] <- "HEALTHY"
-clindata$positivity = as.factor(clindata$positivity)
+colnames(clindata)[colnames(clindata) == snakemake@config[["data_ct_column_name"]]] <- "ct"
+colnames(clindata)[colnames(clindata) == snakemake@config[["data_positivity_column_name"]]] <- "positivity"
 
-####
+# Update disease status in clinical data
+clindata[[snakemake@config[["disease_status"]]]][clindata[[snakemake@config[["disease_status"]]]] == "pos"] <- snakemake@config[["disease_condition"]]
+clindata[[snakemake@config[["disease_status"]]]][clindata[[snakemake@config[["disease_status"]]]] == "neg"] <- snakemake@config[["health_condition"]]
+clindata[[snakemake@config[["disease_status"]]]] = as.factor(clindata[[snakemake@config[["disease_status"]]]])
 
+# Create DESeqDataSet object
 dds <- DESeqDataSetFromMatrix(countData = raw_counts,
                               colData = clindata,
                               design = ~ positivity + batch)
 
-
-####
-
+# Estimate size factors
 dds <- estimateSizeFactors(dds)
 
-####
-
+# Normalize counts
 norm_counts <- counts(dds, normalized=TRUE)
 
-####
-
+# Categorize viral load
 clindata$viral_load <- clindata$ct
 clindata$viral_load[clindata$viral_load == "N/A"] <- "Negative"
 clindata$viral_load[clindata$viral_load > 24 & clindata$viral_load != "Unknown" & clindata$viral_load != "Negative"] <- "LOW"
@@ -57,9 +59,11 @@ clindata$viral_load[clindata$viral_load <= 24 & clindata$viral_load >= 19] <- "M
 clindata$viral_load[clindata$viral_load < 19] <- "HIGH"
 clindata$viral_load <- as.factor(clindata$viral_load)
 clindata$viral_load <- factor(clindata$viral_load, levels = c("Negative", "LOW", "MEDIUM", "HIGH", "Unknown"))
-clindata$positivity <- factor(clindata$positivity, levels = c("HEALTHY", "COVID19"))
 
-#stratify age
+# Update disease status factor levels
+clindata[[snakemake@config[["disease_status"]]]] <- factor(clindata[[snakemake@config[["disease_status"]]]], levels = c(snakemake@config[["health_condition"]], snakemake@config[["disease_condition"]]))
+
+# Stratify age
 clindata$age_cat <- clindata$`age:ch1`
 clindata$age_cat[clindata$`age:ch1` < 30] = "< 30"
 clindata$age_cat[clindata$`age:ch1` >= 30 & clindata$`age:ch1` < 40] ="30s"
@@ -69,8 +73,10 @@ clindata$age_cat[clindata$`age:ch1` >= 60 & clindata$`age:ch1` < 70] ="60s"
 clindata$age_cat[clindata$`age:ch1` >= 70] ="70+"
 clindata$age_cat[clindata$`age:ch1` == "Unknown"] = NA
 
+# Write normalized counts and clinical data to output files
 write.csv(norm_counts, snakemake@output[[1]])
 write.csv(clindata, snakemake@output[[2]])
 
+# Write raw counts to output file
 write.table(raw_counts, file = snakemake@output[[3]], sep = "\t", row.names = FALSE)
 

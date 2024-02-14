@@ -1,0 +1,5 @@
+Channel:
+  - conda-forge
+dependencies:
+  - r-ggally
+  - r-clinfun

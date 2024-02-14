@@ -5,18 +5,15 @@ report: "report/workflow.rst"
 rule all:
         input:
                 "results/summary.pdf",
-                "results/wilcoxon_and_jonckheere_test.txt"
 
 
-rule load_data_and_annotate_data:
+rule load_and_annotate_data:
         conda:
                 "envs/data_loading.yaml"
-        input:
-                "resources/GSE152075_raw_counts_GEO.txt.gz"
         output:
-                "norm_counts.csv",
-                "clindata.csv",
-                "raw_counts.txt"
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv",
+                "tmp/raw_counts.txt"
         script:
                 "scripts/data_loading_and_annotation.R"
 
@@ -25,8 +22,8 @@ rule plot_MX1:
         conda:
                 "envs/plotting.yaml"
         input:
-                "norm_counts.csv",
-                "clindata.csv"
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
         output:
                 report(
                         "results/MX1_plot.pdf",
@@ -37,49 +34,123 @@ rule plot_MX1:
                 "scripts/plot_MX1.R"
 
 
-rule wilcoxon_and_jonckheere_test:
+rule spearman_correlation:
         conda:
-                "envs/wilcoxon_and_jonckheere_test.yaml"
+                "envs/spearman_correlation.yaml"
         input:
-                "norm_counts.csv",
-                "clindata.csv"
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
         output:
                 report(
-                        "results/wilcoxon_and_jonckheere_test.txt",
-                        caption="report/wilcoxon_and_jonckheere.rst",
+                        "results/spearman_correlation.txt",
+                        caption="report/spearman_correlation.rst",
                         category="Step 3"
                 )
         script:
-                "scripts/wilcoxon_and_jonckheere_test.R"
+                "scripts/spearman_correlation.R"
 
 
-rule plot_MX1_and_MX2:
+rule wilcoxon_test:
+        conda:
+                "envs/wilcoxon_and_jonckheere_test.yaml"
+        input:
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
+        output:
+                report(
+                        "results/wilcoxon_test.txt",
+                        caption="report/wilcoxon_test.rst",
+                        category="Step 3"
+                )
+        script:
+                "scripts/wilcoxon_test.R"
+
+
+rule jonckheere_test:
+        conda:
+                "envs/wilcoxon_and_jonckheere_test.yaml"
+        input:
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
+        output:
+                report(
+                        "results/jonckheere_test.txt",
+                        caption="report/jonckheere_test.rst",
+                        category="Step 4"
+                )
+        script:
+                "scripts/jonckheere_test.R"
+
+
+rule plot_MX1_MX2:
         conda:
                 "envs/plotting.yaml"
         input:
-                "norm_counts.csv",
-                "clindata.csv"
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
         output:
                 report(
                         "results/MX1_MX2_plot.pdf",
                         caption="report/MX1_MX2_plot.rst",
-                        category="Step 4"
+                        category="Step 5"
                 )
         script:
                 "scripts/plot_MX1_MX2.R"
+
+
+rule spearman_correlation_to_pdf:
+        conda:
+                "envs/txt_to_pdf.yaml"
+        input:
+                "results/spearman_correlation.txt"
+        output:
+                report(
+                        "results/spearman_correlation.pdf",
+                        caption="report/txt_to_pdf.rst",
+                )
+        shell:
+                "pandoc {input} -o {output} --pdf-engine=tectonic"
+
+
+rule wilcoxon_test_to_pdf:
+        conda:
+                "envs/txt_to_pdf.yaml"
+        input:
+                "results/wilcoxon_test.txt"
+        output:
+                report(
+                        "results/wilcoxon_test.pdf",
+                        caption="report/txt_to_pdf.rst",
+                )
+        shell:
+                "pandoc {input} -o {output} --pdf-engine=tectonic"
+
+
+rule jonckheere_test_to_pdf:
+        conda:
+                "envs/txt_to_pdf.yaml"
+        input:
+                "results/jonckheere_test.txt"
+        output:
+                report(
+                        "results/jonckheere_test.pdf",
+                        caption="report/txt_to_pdf.rst",
+                )
+        shell:
+                "pandoc {input} -o {output} --pdf-engine=tectonic"
 
 
 rule PCA_and_3D_plot:
         conda:
                 "envs/PCA_and_3D_plot.yaml"
         input:
-                "norm_counts.csv",
-                "clindata.csv"
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
         output:
                 report(
                         "results/3D_plot_of_PCA.pdf",
                         caption="report/PCA_and_3D_plot.rst",
-                        category="Step 4"
+                        category="Step 5"
                 )
         script:
                 "scripts/PCA_and_3D_plot.R"
@@ -89,17 +160,34 @@ rule histogram_of_selected_data:
         conda:
                 "envs/only_r.yaml"
         input:
-                "norm_counts.csv",
-                "clindata.csv",
-                "raw_counts.txt"
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv",
+                "tmp/raw_counts.txt"
         output:
                 report(
                         "results/histogram.pdf",
                         caption="report/histogram.rst",
-                        category="Step 5"
+                        category="Step 6"
                 )
         script:
                 "scripts/histogram.R"
+
+
+rule pairwise_correlation:
+        conda:
+                "envs/pairwise_correlation.yaml"
+        input:
+                "tmp/norm_counts.csv",
+                "tmp/clindata.csv"
+        output:
+                report(
+                        "results/pairwise_correlation.pdf",
+                        caption="report/pairwise_correlation.rst",
+                        category="Step 7"
+                )
+        script:
+                "scripts/pairwise_correlation.R"
+
 
 rule summarize_results:
         conda:
@@ -108,12 +196,16 @@ rule summarize_results:
                 "results/MX1_plot.pdf",
                 "results/MX1_MX2_plot.pdf",
                 "results/3D_plot_of_PCA.pdf",
-                "results/histogram.pdf"
+                "results/histogram.pdf",
+                "results/pairwise_correlation.pdf",
+                "results/spearman_correlation.pdf",
+                "results/wilcoxon_test.pdf",
+                "results/jonckheere_test.pdf"
         output:
                 report(
                         "results/summary.pdf",
                         caption="report/summary.rst",
-                        category="Step 6"
+                        category="Step 8"
                 )
         script:
                 "scripts/summarize_results.R"
