@@ -25,9 +25,6 @@ common_names <- intersect(rownames(clindata), colnames(raw_counts))
 clindata <- clindata[rownames(clindata) %in% common_names,]
 raw_counts <- raw_counts[, colnames(raw_counts) %in% common_names]
 
-# Read raw reads data
-raw_counts <- read.delim("resources/raw_reads.gz", stringsAsFactors=FALSE, sep = " ")
-
 # See how many genes per sample have 0 reads
 zero <- colSums(norm_counts == 0)/nrow(norm_counts)
 hist(zero, breaks = 50)
