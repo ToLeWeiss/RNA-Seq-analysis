@@ -32,8 +32,8 @@ data_positivity_column_name: "sars-cov-2 positivity:ch1"
 # Specify if the raw unprocessed data is provided locally or if it has to be downloaded
 # TRUE if the raw data is provided locally
 # FALSE otherwise
-is_raw_data_locally: TRUE
+is_raw_data_locally: FALSE
 
 # If the data is provided locally then here should be the relative or absolute path to the 
 # raw data
-local_raw_data_path: "resources/raw_reads.gz"
+local_raw_data_path: ""
