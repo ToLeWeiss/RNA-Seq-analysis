@@ -12,6 +12,10 @@ if (snakemake@config[["is_raw_data_locally"]] == FALSE) {
    dataset = snakemake@config[["geo_dataset"]]
    url = sprintf("https://www.ncbi.nlm.nih.gov/geo/download/?acc=%s&format=file&file=%s_raw_counts_GEO.txt.gz",
       dataset, dataset)
+   # Check if the saving directory is available
+   if (!dir.exists("resources")) {
+       dir.create("resources")
+   }
    download.file(url, "resources/raw_reads.gz")
    # Read raw count data from file
    raw_counts <- read.delim("resources/raw_reads.gz", stringsAsFactors=FALSE, sep = " ")

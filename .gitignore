@@ -1,6 +1,4 @@
 .snakemake/
-results/*
-raw_reads.gz
-raw_counts.txt
-clindata.csv
-norm_counts.csv
+resources/
+results/
+tmp/
