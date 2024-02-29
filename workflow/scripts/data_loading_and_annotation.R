@@ -9,7 +9,7 @@ clindata <- data[["GSE152075_series_matrix.txt.gz"]]@phenoData@data
 
 if (snakemake@config[["is_raw_data_locally"]] == FALSE) {
    # Get raw counts data from GEO database
-   dataset = snakemake@config[["geo_dataset"]]
+   dataset <- snakemake@config[["geo_dataset"]]
    url = sprintf("https://www.ncbi.nlm.nih.gov/geo/download/?acc=%s&format=file&file=%s_raw_counts_GEO.txt.gz",
       dataset, dataset)
    # Check if the saving directory is available
