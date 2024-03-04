@@ -2,18 +2,24 @@ configfile: "config/config.yaml"
 
 report: "report/workflow.rst"
 
+dataset = config["geo_dataset"]
+
 rule all:
         input:
-                "results/summary.pdf",
+                f"results/{dataset}/summary.pdf",
 
 
 rule load_and_annotate_data:
         conda:
                 "envs/data_loading.yaml"
         output:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv",
-                "tmp/raw_counts.txt"
+                report(
+                        [f"tmp/{dataset}/norm_counts.csv",
+                        f"tmp/{dataset}/clindata.csv",
+                        f"tmp/{dataset}/raw_counts.txt"],
+                        caption="report/data_loading_and_annotation.rst",
+                        category="Step 1"
+                )
         script:
                 "scripts/data_loading_and_annotation.R"
 
@@ -22,11 +28,11 @@ rule plot_MX1:
         conda:
                 "envs/plotting.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/MX1_plot.pdf",
+                        f"results/{dataset}/MX1_plot.pdf",
                         caption="report/MX1_plot.rst", 
                         category="Step 2"
                 )
@@ -38,11 +44,11 @@ rule spearman_correlation:
         conda:
                 "envs/spearman_correlation.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/spearman_correlation.txt",
+                        f"results/{dataset}/spearman_correlation.txt",
                         caption="report/spearman_correlation.rst",
                         category="Step 3"
                 )
@@ -54,11 +60,11 @@ rule wilcoxon_test:
         conda:
                 "envs/wilcoxon_and_jonckheere_test.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/wilcoxon_test.txt",
+                        f"results/{dataset}/wilcoxon_test.txt",
                         caption="report/wilcoxon_test.rst",
                         category="Step 3"
                 )
@@ -70,11 +76,11 @@ rule jonckheere_test:
         conda:
                 "envs/wilcoxon_and_jonckheere_test.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/jonckheere_test.txt",
+                        f"results/{dataset}/jonckheere_test.txt",
                         caption="report/jonckheere_test.rst",
                         category="Step 4"
                 )
@@ -86,11 +92,11 @@ rule plot_MX1_MX2:
         conda:
                 "envs/plotting.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/MX1_MX2_plot.pdf",
+                        f"results/{dataset}/MX1_MX2_plot.pdf",
                         caption="report/MX1_MX2_plot.rst",
                         category="Step 5"
                 )
@@ -102,10 +108,10 @@ rule spearman_correlation_to_pdf:
         conda:
                 "envs/txt_to_pdf.yaml"
         input:
-                "results/spearman_correlation.txt"
+                f"results/{dataset}/spearman_correlation.txt"
         output:
                 report(
-                        "results/spearman_correlation.pdf",
+                        f"results/{dataset}/spearman_correlation.pdf",
                         caption="report/txt_to_pdf.rst",
                 )
         shell:
@@ -116,10 +122,10 @@ rule wilcoxon_test_to_pdf:
         conda:
                 "envs/txt_to_pdf.yaml"
         input:
-                "results/wilcoxon_test.txt"
+                f"results/{dataset}/wilcoxon_test.txt"
         output:
                 report(
-                        "results/wilcoxon_test.pdf",
+                        f"results/{dataset}/wilcoxon_test.pdf",
                         caption="report/txt_to_pdf.rst",
                 )
         shell:
@@ -130,44 +136,60 @@ rule jonckheere_test_to_pdf:
         conda:
                 "envs/txt_to_pdf.yaml"
         input:
-                "results/jonckheere_test.txt"
+                f"results/{dataset}/jonckheere_test.txt"
         output:
                 report(
-                        "results/jonckheere_test.pdf",
+                        f"results/{dataset}/jonckheere_test.pdf",
                         caption="report/txt_to_pdf.rst",
                 )
         shell:
                 "pandoc {input} -o {output} --pdf-engine=tectonic"
 
 
-rule PCA_and_3D_plot:
+rule PCA_biplot:
         conda:
-                "envs/PCA_and_3D_plot.yaml"
+                "envs/PCA_biplot.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/3D_plot_of_PCA.pdf",
-                        caption="report/PCA_and_3D_plot.rst",
+                        f"results/{dataset}/PCA_biplot.pdf",
+                        caption="report/PCA_biplot.rst",
                         category="Step 5"
                 )
         script:
-                "scripts/PCA_and_3D_plot.R"
+                "scripts/PCA_biplot.R"
+
+
+rule plot_of_PCA:
+        conda:
+                "envs/3D_plot.yaml"
+        input:
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
+        output:
+                report(
+                        f"results/{dataset}/3D_plot_of_PCA.pdf",
+                        caption="report/3D_plot_of_PCA.rst",
+                        category="Step 6"
+                )
+        script:
+                "scripts/3D_plot_of_PCA.R"
 
 
 rule histogram_of_selected_data:
         conda:
                 "envs/only_r.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv",
-                "tmp/raw_counts.txt"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv",
+                f"tmp/{dataset}/raw_counts.txt"
         output:
                 report(
-                        "results/histogram.pdf",
+                        f"results/{dataset}/histogram.pdf",
                         caption="report/histogram.rst",
-                        category="Step 6"
+                        category="Step 7"
                 )
         script:
                 "scripts/histogram.R"
@@ -177,13 +199,13 @@ rule pairwise_correlation:
         conda:
                 "envs/pairwise_correlation.yaml"
         input:
-                "tmp/norm_counts.csv",
-                "tmp/clindata.csv"
+                f"tmp/{dataset}/norm_counts.csv",
+                f"tmp/{dataset}/clindata.csv"
         output:
                 report(
-                        "results/pairwise_correlation.pdf",
+                        f"results/{dataset}/pairwise_correlation.pdf",
                         caption="report/pairwise_correlation.rst",
-                        category="Step 7"
+                        category="Step 8"
                 )
         script:
                 "scripts/pairwise_correlation.R"
@@ -193,19 +215,20 @@ rule summarize_results:
         conda:
                 "envs/summary.yaml"
         input:
-                "results/MX1_plot.pdf",
-                "results/MX1_MX2_plot.pdf",
-                "results/3D_plot_of_PCA.pdf",
-                "results/histogram.pdf",
-                "results/pairwise_correlation.pdf",
-                "results/spearman_correlation.pdf",
-                "results/wilcoxon_test.pdf",
-                "results/jonckheere_test.pdf"
+                f"results/{dataset}/MX1_plot.pdf",
+                f"results/{dataset}/MX1_MX2_plot.pdf",
+                f"results/{dataset}/pairwise_correlation.pdf",
+                f"results/{dataset}/PCA_biplot.pdf",
+                f"results/{dataset}/3D_plot_of_PCA.pdf",
+                f"results/{dataset}/spearman_correlation.pdf",
+                f"results/{dataset}/wilcoxon_test.pdf",
+                f"results/{dataset}/jonckheere_test.pdf",
+                f"results/{dataset}/histogram.pdf"
         output:
                 report(
-                        "results/summary.pdf",
+                        f"results/{dataset}/summary.pdf",
                         caption="report/summary.rst",
-                        category="Step 8"
+                        category="Step 9"
                 )
         script:
                 "scripts/summarize_results.R"

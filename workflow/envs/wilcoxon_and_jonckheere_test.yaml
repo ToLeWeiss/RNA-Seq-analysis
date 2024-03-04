@@ -1,7 +1,7 @@
 channels:
  - conda-forge
 dependencies:
- - r-base
- - r-clinfun
- - r-ggally
+ - r-base=4.3
+ - r-ggally=2.2
+ - r-clinfun=1.1
 

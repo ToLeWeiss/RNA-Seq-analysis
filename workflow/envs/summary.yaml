@@ -2,5 +2,5 @@ channels:
  - conda-forge
  - r
 dependencies:
- - r-base
- - r-qpdf
+ - r-base=4.3
+ - r-qpdf=1.3

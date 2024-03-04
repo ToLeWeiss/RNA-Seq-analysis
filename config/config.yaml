@@ -34,6 +34,9 @@ data_positivity_column_name: "sars-cov-2 positivity:ch1"
 # FALSE otherwise
 is_raw_data_locally: FALSE
 
+# Specify the location as to where the raw data should be saved
+raw_data_saving_path: "resources/raw_reads.gz"
+
 # If the data is provided locally then here should be the relative or absolute path to the 
 # raw data
-local_raw_data_path: ""
+local_raw_data_path: "resources/raw_reads.gz"

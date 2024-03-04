@@ -12,13 +12,15 @@ if (snakemake@config[["is_raw_data_locally"]] == FALSE) {
    dataset <- snakemake@config[["geo_dataset"]]
    url = sprintf("https://www.ncbi.nlm.nih.gov/geo/download/?acc=%s&format=file&file=%s_raw_counts_GEO.txt.gz",
       dataset, dataset)
+   saving_directory <- paste(dirname((snakemake@config[["raw_data_saving_path"]])), "/", dataset, sep = "")
    # Check if the saving directory is available
-   if (!dir.exists("resources")) {
-       dir.create("resources")
+   if (!dir.exists(saving_directory)) {
+      dir.create(saving_directory, recursive = TRUE)
    }
-   download.file(url, "resources/raw_reads.gz")
+   
+   download.file(url, snakemake@config[["raw_data_saving_path"]] )
    # Read raw count data from file
-   raw_counts <- read.delim("resources/raw_reads.gz", stringsAsFactors=FALSE, sep = " ")
+   raw_counts <- read.delim(snakemake@config[["raw_data_saving_path"]], stringsAsFactors=FALSE, sep = " ")
 } else {
    raw_counts <- read.delim(snakemake@config[["local_raw_data_path"]], stringsAsFactors=FALSE, sep = " ")
 }

@@ -3,7 +3,7 @@ channels:
  - r
  - bioconda
 dependencies:
- - r-base
- - bioconductor-deseq2
- - bioconductor-geoquery
+ - r-base=4.3
+ - bioconductor-deseq2=1.42
+ - bioconductor-geoquery=2.70
 
