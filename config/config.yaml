@@ -32,11 +32,12 @@ data_positivity_column_name: "sars-cov-2 positivity:ch1"
 # Specify if the raw unprocessed data is provided locally or if it has to be downloaded
 # TRUE if the raw data is provided locally
 # FALSE otherwise
-is_raw_data_locally: FALSE
+is_raw_data_locally: TRUE
 
-# Specify the location as to where the raw data should be saved
-raw_data_saving_path: "resources/raw_reads.gz"
+# Specify the directory where the raw data should be saved if the data should be downloaded.
+# This will save the data in a directory named as the geo dataset identifier.
+raw_data_saving_dir: "resources"
 
 # If the data is provided locally then here should be the relative or absolute path to the 
 # raw data
-local_raw_data_path: "resources/raw_reads.gz"
+local_raw_data_path: "resources/GSE152075/raw_reads.gz"
