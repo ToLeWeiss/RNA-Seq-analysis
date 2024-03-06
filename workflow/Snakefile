@@ -1,234 +1,346 @@
+# Configuration file
 configfile: "config/config.yaml"
 
+# Report file
 report: "report/workflow.rst"
 
+# Dataset to be processed
 dataset = config["geo_dataset"]
 
+
+# Rule to define the entire workflow
 rule all:
-        input:
-                f"results/{dataset}/summary.pdf",
+    """
+    This rule defines the entire workflow, specifying the final output(s) of the workflow.
+    In this case, it is a summary PDF file containing all the results.
+    """
+    input:
+        f"results/{dataset}/summary.pdf",
 
 
+# Rule to load and annotate data
 rule load_and_annotate_data:
-        conda:
-                "envs/data_loading.yaml"
-        output:
-                report(
-                        [f"tmp/{dataset}/norm_counts.csv",
-                        f"tmp/{dataset}/clindata.csv",
-                        f"tmp/{dataset}/raw_counts.txt"],
-                        caption="report/data_loading_and_annotation.rst",
-                        category="Step 1"
-                )
-        script:
-                "scripts/data_loading_and_annotation.R"
+    """
+    This rule is responsible for loading the dataset and annotating it. It outputs
+    normalized counts, clinical data, and raw counts files, which are used in subsequent
+    analysis steps.
+    """
+    conda:
+        "envs/data_loading.yaml"
+    output:
+        report(
+            ["tmp/{dataset}/norm_counts.csv",
+            "tmp/{dataset}/clindata.csv",
+            "tmp/{dataset}/raw_counts.txt"],
+            caption="report/data_loading_and_annotation.rst",
+            category="Step 1"
+        )
+    log:
+        "logs/{dataset}/load_and_annotate_data.log"
+    script:
+        "scripts/data_loading_and_annotation.R"
 
 
+# Rule for plotting MX1
 rule plot_MX1:
-        conda:
-                "envs/plotting.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/MX1_plot.pdf",
-                        caption="report/MX1_plot.rst", 
-                        category="Step 2"
-                )
-        script:
-                "scripts/plot_MX1.R"
+    """
+    This rule generates a plot for MX1, using normalized counts and clinical data.
+    The output is a PDF file containing the plot, which is stored in the results directory.
+    """
+    conda:
+        "envs/plotting.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/MX1_plot.pdf",
+            caption="report/MX1_plot.rst", 
+            category="Step 2"
+        )
+    log:
+        "logs/{dataset}/MX1_plot.log"
+    script:
+        "scripts/plot_MX1.R"
 
 
+# Rule for calculating Spearman correlation
 rule spearman_correlation:
-        conda:
-                "envs/spearman_correlation.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/spearman_correlation.txt",
-                        caption="report/spearman_correlation.rst",
-                        category="Step 3"
-                )
-        script:
-                "scripts/spearman_correlation.R"
+    """
+    This rule calculates the Spearman correlation between normalized counts and clinical data.
+    The output is a text file containing the correlation results, which is stored in the results directory.
+    """
+    conda:
+        "envs/spearman_correlation.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/spearman_correlation.txt",
+            caption="report/spearman_correlation.rst",
+            category="Step 3"
+        )
+    log:
+        "logs/{dataset}/spearman_correlation.log"
+    script:
+        "scripts/spearman_correlation.R"
 
 
+# Rule for performing Wilcoxon test
 rule wilcoxon_test:
-        conda:
-                "envs/wilcoxon_and_jonckheere_test.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/wilcoxon_test.txt",
-                        caption="report/wilcoxon_test.rst",
-                        category="Step 3"
-                )
-        script:
-                "scripts/wilcoxon_test.R"
+    """
+    This rule performs the Wilcoxon test to compare the normalized counts and clinical data.
+    The output is a text file containing the test results, which is stored in the results directory.
+    """
+    conda:
+        "envs/wilcoxon_and_jonckheere_test.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/wilcoxon_test.txt",
+            caption="report/wilcoxon_test.rst",
+            category="Step 3"
+        )
+    log:
+        "logs/{dataset}/wilcoxon_test.log"
+    script:
+        "scripts/wilcoxon_test.R"
 
 
+# Rule for performing Jonckheere test
 rule jonckheere_test:
-        conda:
-                "envs/wilcoxon_and_jonckheere_test.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/jonckheere_test.txt",
-                        caption="report/jonckheere_test.rst",
-                        category="Step 4"
-                )
-        script:
-                "scripts/jonckheere_test.R"
+    """
+    This rule performs the Jonckheere test to compare the normalized counts and clinical data.
+    The output is a text file containing the test results, which is stored in the results directory.
+    """
+    conda:
+        "envs/wilcoxon_and_jonckheere_test.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/jonckheere_test.txt",
+            caption="report/jonckheere_test.rst",
+            category="Step 4"
+        )
+    log:
+        "logs/{dataset}/jonckheere_test.log"
+    script:
+        "scripts/jonckheere_test.R"
 
 
+# Rule for plotting MX1 and MX2
 rule plot_MX1_MX2:
-        conda:
-                "envs/plotting.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/MX1_MX2_plot.pdf",
-                        caption="report/MX1_MX2_plot.rst",
-                        category="Step 5"
-                )
-        script:
-                "scripts/plot_MX1_MX2.R"
+    """
+    This rule generates a plot comparing MX1 and MX2, using normalized counts and clinical data.
+    The output is a PDF file containing the plot, which is stored in the results directory.
+    """
+    conda:
+        "envs/plotting.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/MX1_MX2_plot.pdf",
+            caption="report/MX1_MX2_plot.rst",
+            category="Step 5"
+        )
+    log:
+        "logs/{dataset}/MX1_MX2_plot.log"
+    script:
+        "scripts/plot_MX1_MX2.R"
 
 
+# Rule for converting Spearman correlation results to PDF
 rule spearman_correlation_to_pdf:
-        conda:
-                "envs/txt_to_pdf.yaml"
-        input:
-                f"results/{dataset}/spearman_correlation.txt"
-        output:
-                report(
-                        f"results/{dataset}/spearman_correlation.pdf",
-                        caption="report/txt_to_pdf.rst",
-                )
-        shell:
-                "pandoc {input} -o {output} --pdf-engine=tectonic"
+    """
+    This rule converts the Spearman correlation results from a text file to a PDF.
+    It uses the pandoc tool with the tectonic PDF engine to generate the PDF.
+    The output is a PDF file containing the Spearman correlation results.
+    """
+    conda:
+        "envs/txt_to_pdf.yaml"
+    input:
+        "results/{dataset}/spearman_correlation.txt"
+    output:
+        report(
+            "results/{dataset}/spearman_correlation.pdf",
+            caption="report/txt_to_pdf.rst",
+        )
+    log:
+        "logs/{dataset}/spearman_to_pdf.log"
+    shell:
+        "pandoc {input} -o {output} --pdf-engine=tectonic 2> {log}"
 
 
+# Rule for converting Wilcoxon test results to PDF
 rule wilcoxon_test_to_pdf:
-        conda:
-                "envs/txt_to_pdf.yaml"
-        input:
-                f"results/{dataset}/wilcoxon_test.txt"
-        output:
-                report(
-                        f"results/{dataset}/wilcoxon_test.pdf",
-                        caption="report/txt_to_pdf.rst",
-                )
-        shell:
-                "pandoc {input} -o {output} --pdf-engine=tectonic"
+    """
+    This rule converts the Wilcoxon test results from a text file to a PDF.
+    It uses the pandoc tool with the tectonic PDF engine to generate the PDF.
+    The output is a PDF file containing the Wilcoxon test results.
+    """
+    conda:
+        "envs/txt_to_pdf.yaml"
+    input:
+        "results/{dataset}/wilcoxon_test.txt"
+    output:
+        report(
+            "results/{dataset}/wilcoxon_test.pdf",
+            caption="report/txt_to_pdf.rst",
+        )
+    log:
+        "logs/{dataset}/wilcoxon_to_pdf.log"
+    shell:
+        "pandoc {input} -o {output} --pdf-engine=tectonic 2> {log}"
 
 
+# Rule for converting Jonckheere test results to PDF
 rule jonckheere_test_to_pdf:
-        conda:
-                "envs/txt_to_pdf.yaml"
-        input:
-                f"results/{dataset}/jonckheere_test.txt"
-        output:
-                report(
-                        f"results/{dataset}/jonckheere_test.pdf",
-                        caption="report/txt_to_pdf.rst",
-                )
-        shell:
-                "pandoc {input} -o {output} --pdf-engine=tectonic"
+    """
+    This rule converts the Jonckheere test results from a text file to a PDF.
+    It uses the pandoc tool with the tectonic PDF engine to generate the PDF.
+    The output is a PDF file containing the Jonckheere test results.
+    """
+    conda:
+        "envs/txt_to_pdf.yaml"
+    input:
+        "results/{dataset}/jonckheere_test.txt"
+    output:
+        report(
+            "results/{dataset}/jonckheere_test.pdf",
+            caption="report/txt_to_pdf.rst",
+        )
+    log:
+        "logs/{dataset}/jonckheere_to_pdf.log"
+    shell:
+        "pandoc {input} -o {output} --pdf-engine=tectonic 2> {log}"
 
 
+# Rule for generating PCA biplot
 rule PCA_biplot:
-        conda:
-                "envs/PCA_biplot.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/PCA_biplot.pdf",
-                        caption="report/PCA_biplot.rst",
-                        category="Step 5"
-                )
-        script:
-                "scripts/PCA_biplot.R"
+    """
+    This rule generates a biplot for Principal Component Analysis (PCA) using normalized counts and clinical data.
+    The output is a PDF file containing the PCA biplot, which is stored in the results directory.
+    """
+    conda:
+        "envs/PCA_biplot.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/PCA_biplot.pdf",
+            caption="report/PCA_biplot.rst",
+            category="Step 5"
+        )
+    log:
+        "logs/{dataset}/PCA_biplot.log"
+    script:
+        "scripts/PCA_biplot.R"
 
 
+# Rule for generating a 3D plot of PCA
 rule plot_of_PCA:
-        conda:
-                "envs/3D_plot.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/3D_plot_of_PCA.pdf",
-                        caption="report/3D_plot_of_PCA.rst",
-                        category="Step 6"
-                )
-        script:
-                "scripts/3D_plot_of_PCA.R"
+    """
+    This rule generates a 3D plot of PCA using normalized counts and clinical data.
+    The output is a PDF file containing the 3D plot, which is stored in the results directory.
+    """
+    conda:
+        "envs/3D_plot.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/3D_plot_of_PCA.pdf",
+            caption="report/3D_plot_of_PCA.rst",
+            category="Step 6"
+        )
+    log:
+        "logs/{dataset}/3D_plot_of_PCA.log"
+    script:
+        "scripts/3D_plot_of_PCA.R"
 
 
+# Rule for generating a histogram of selected data
 rule histogram_of_selected_data:
-        conda:
-                "envs/only_r.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv",
-                f"tmp/{dataset}/raw_counts.txt"
-        output:
-                report(
-                        f"results/{dataset}/histogram.pdf",
-                        caption="report/histogram.rst",
-                        category="Step 7"
-                )
-        script:
-                "scripts/histogram.R"
+    """
+    This rule generates a histogram for selected data, including normalized counts, clinical data, and raw counts.
+    The output is a PDF file containing the histogram, which is stored in the results directory.
+    """
+    conda:
+        "envs/only_r.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv",
+        "tmp/{dataset}/raw_counts.txt"
+    output:
+        report(
+            "results/{dataset}/histogram.pdf",
+            caption="report/histogram.rst",
+            category="Step 7"
+        )
+    log:
+        "logs/{dataset}/histogram.log"
+    script:
+        "scripts/histogram.R"
 
 
+# Rule for calculating pairwise correlation
 rule pairwise_correlation:
-        conda:
-                "envs/pairwise_correlation.yaml"
-        input:
-                f"tmp/{dataset}/norm_counts.csv",
-                f"tmp/{dataset}/clindata.csv"
-        output:
-                report(
-                        f"results/{dataset}/pairwise_correlation.pdf",
-                        caption="report/pairwise_correlation.rst",
-                        category="Step 8"
-                )
-        script:
-                "scripts/pairwise_correlation.R"
+    """
+    This rule calculates the pairwise correlation between normalized counts and clinical data.
+    The output is a PDF file containing the pairwise correlation plot, which is stored in the results directory.
+    """
+    conda:
+        "envs/pairwise_correlation.yaml"
+    input:
+        "tmp/{dataset}/norm_counts.csv",
+        "tmp/{dataset}/clindata.csv"
+    output:
+        report(
+            "results/{dataset}/pairwise_correlation.pdf",
+            caption="report/pairwise_correlation.rst",
+            category="Step 8"
+        )
+    log:
+        "logs/{dataset}/pairwise_correlation.log"
+    script:
+        "scripts/pairwise_correlation.R"
 
 
+# Rule for summarizing all results into a single PDF
 rule summarize_results:
-        conda:
-                "envs/summary.yaml"
-        input:
-                f"results/{dataset}/MX1_plot.pdf",
-                f"results/{dataset}/MX1_MX2_plot.pdf",
-                f"results/{dataset}/pairwise_correlation.pdf",
-                f"results/{dataset}/PCA_biplot.pdf",
-                f"results/{dataset}/3D_plot_of_PCA.pdf",
-                f"results/{dataset}/spearman_correlation.pdf",
-                f"results/{dataset}/wilcoxon_test.pdf",
-                f"results/{dataset}/jonckheere_test.pdf",
-                f"results/{dataset}/histogram.pdf"
-        output:
-                report(
-                        f"results/{dataset}/summary.pdf",
-                        caption="report/summary.rst",
-                        category="Step 9"
-                )
-        script:
-                "scripts/summarize_results.R"
+    """
+    This rule summarizes all the results (plots and test outputs) into a single PDF report.
+    The output is a PDF file containing the summary of all analyses performed, stored in the results directory.
+    """
+    conda:
+        "envs/summary.yaml"
+    input:
+        "results/{dataset}/MX1_plot.pdf",
+        "results/{dataset}/MX1_MX2_plot.pdf",
+        "results/{dataset}/pairwise_correlation.pdf",
+        "results/{dataset}/PCA_biplot.pdf",
+        "results/{dataset}/3D_plot_of_PCA.pdf",
+        "results/{dataset}/spearman_correlation.pdf",
+        "results/{dataset}/wilcoxon_test.pdf",
+        "results/{dataset}/jonckheere_test.pdf",
+        "results/{dataset}/histogram.pdf"
+    output:
+        report(
+            "results/{dataset}/summary.pdf",
+            caption="report/summary.rst",
+            category="Step 9"
+        )
+    log:
+        "logs/{dataset}/summarize_results.log"
+    script:
+        "scripts/summarize_results.R"
+

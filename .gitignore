@@ -2,4 +2,5 @@
 resources/
 results/
 tmp/
+logs/
 report.html

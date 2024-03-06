@@ -1,5 +1,6 @@
 # RNA-Seq-analysis
 [![Snakemake](https://img.shields.io/badge/snakemake-≥8.5.3-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
+<br/>
 A workflow made with snakemake to analyse differential gene expression.
 
 ## Contents
@@ -14,7 +15,7 @@ available RNA-sequencing datasets](https://doi.org/10.1016/j.xpro.2021.100478).
 
 Ensure you have the required dependencies:
 - mamba >= 1.5.5 (alternatively conda >= 23.11.0)
-- a environment that has snakemake installed as specified [here](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
+- an environment that has snakemake installed as specified [here](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 - a stable internet connection
 
 ## Installation
@@ -40,10 +41,10 @@ Ensure you have the required dependencies:
     ```
 
 4. Run the workflow:
-    you can specify your preferred number of cores yourself in the below code it is set to 2,
-    which should be ok for most systems.
+    you can specify your preferred number of cores yourself in the below code it is set to 1,
+    which should be ok for all systems.
     ```terminal
-    snakemake --use-conda --cores 2
+    snakemake --use-conda --cores 1
     ```
 
 **OPTIONAL**
@@ -68,4 +69,60 @@ Ensure you have the required dependencies:
 - [Mölder, F., Jablonski, K.P., Letcher, B., Hall, M.B., Tomkins-Tinch, C.H., Sochat, V., Forster, J., Lee, S., 
   Twardziok, S.O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., Nahnsen, S., Köster, J., 
   2021. Sustainable data analysis with Snakemake. F1000Res 10, 33.](https://doi.org/10.12688/f1000research.29032.1)
+
+- [Snakemake on GitHub](https://github.com/snakemake/snakemake)
+
+- [The snakemake website](https://snakemake.github.io/)
+
+- [Documentation of Snakemake](https://snakemake.readthedocs.io/en/stable/index.html)
+
+**R Packages**
+
+- DESeq2
+    - [Love MI, Huber W, Anders S (2014). “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.” 
+      Genome Biology, 15, 550](https://doi.org/10.1186/s13059-014-0550-8)
+
+    - [The DESeq2 repository](https://code.bioconductor.org/browse/DESeq2/RELEASE_3_18/)
+
+- ggplot2
+    - H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+
+    - [The ggplot2 website](https://ggplot2.tidyverse.org/index.html)
+
+    - [ggplot2 on GitHub](https://github.com/tidyverse/ggplot2/)
+
+- GGally
+    - Schloerke B, Cook D, Larmarange J, Briatte F, Marbach M, Thoen E, Elberg A, Crowley J (2024). GGally: Extension to 'ggplot2'.
+
+    - [The GGally website](https://ggobi.github.io/ggally/)
+
+    - [GGally on GitHub](https://github.com/tidyverse/ggplot2/)
+
+- canvasXpress
+    - [The canvasXpress website](https://www.canvasxpress.org/)
+
+    - [canvasXpress on GitHub](https://github.com/neuhausi/canvasXpress)
+
+- factoextra 
+    - [The factoextra website](https://rpkgs.datanovia.com/factoextra/index.html)
+
+    - [factoextra on GitHub](https://github.com/kassambara/factoextra/)
+
+- clinfun
+    - Seshan V, Whiting K (2023). clinfun: Clinical Trial Design and Data Analysis Functions. R package version 1.1.1.
+
+    - [The clinfun website](https://veseshan.github.io/clinfun/index.html)
+
+    - [clinfun on GitHub](https://github.com/veseshan/clinfun)
+
+
+- GEOquery
+    - [Davis S, Meltzer P (2007). “GEOquery: a bridge between the Gene Expression Omnibus (GEO) and BioConductor.” Bioinformatics, 14, 1846–1847.](https://doi.org/doi:10.18129/B9.bioc.GEOquery)
+
+    - [The GEOquery repository](https://code.bioconductor.org/browse/GEOquery/RELEASE_3_18/)
+
+**Pandoc**
+- [MacFarlane, J., Krewinkel, A., & Rosenthal, J. Pandoc [Computer software]](https://github.com/jgm/pandoc)
+
+- [The Pandoc website](https://pandoc.org/index.html)
 

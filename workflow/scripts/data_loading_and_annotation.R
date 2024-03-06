@@ -1,6 +1,10 @@
 library(GEOquery)
 library(DESeq2)
 
+logfile <- file(snakemake@log[[1]], "w")
+# Redirect warnings messages and errors to the log file
+sink(logfile, type = "message")
+
 # Retrieve data from GEO database
 data <- getGEO(GEO = snakemake@config[["geo_dataset"]])
 
