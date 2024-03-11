@@ -5,6 +5,10 @@ A workflow made with snakemake to analyse differential gene expression.
 
 ## Contents
 
+- [Description](https://github.com/ToLeWeiss/RNA-Seq-analysis/tree/master?tab=readme-ov-file#description)
+- [Requirements](https://github.com/ToLeWeiss/RNA-Seq-analysis/tree/master?tab=readme-ov-file#requirements)
+- [Installation and application](https://github.com/ToLeWeiss/RNA-Seq-analysis/tree/master?tab=readme-ov-file#Installation-and-application)
+- [References](https://github.com/ToLeWeiss/RNA-Seq-analysis/tree/master?tab=readme-ov-file#references)
 
 ## Description
 RNA-Seq-analysis is an open software workflow using [snakmeake](https://snakemake.github.io/) to
@@ -18,7 +22,7 @@ Ensure you have the required dependencies:
 - an environment that has snakemake installed as specified [here](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 - a stable internet connection
 
-## Installation
+## Installation and application
 
 1. Clone this repository via:
     ```terminal

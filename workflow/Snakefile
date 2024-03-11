@@ -16,7 +16,7 @@ rule all:
     """
     input:
         f"results/{dataset}/summary.pdf",
-
+        f"results/{dataset}/3D_plot_of_PCA.html"
 
 # Rule to load and annotate data
 rule load_and_annotate_data:
@@ -29,9 +29,9 @@ rule load_and_annotate_data:
         "envs/data_loading.yaml"
     output:
         report(
-            ["tmp/{dataset}/norm_counts.csv",
-            "tmp/{dataset}/clindata.csv",
-            "tmp/{dataset}/raw_counts.txt"],
+            [protected("tmp/{dataset}/norm_counts.csv"),
+            protected("tmp/{dataset}/clindata.csv"),
+            protected("tmp/{dataset}/raw_counts.txt")],
             caption="report/data_loading_and_annotation.rst",
             category="Step 1"
         )
@@ -258,7 +258,7 @@ rule plot_of_PCA:
         "tmp/{dataset}/clindata.csv"
     output:
         report(
-            "results/{dataset}/3D_plot_of_PCA.pdf",
+            "results/{dataset}/3D_plot_of_PCA.html",
             caption="report/3D_plot_of_PCA.rst",
             category="Step 6"
         )
@@ -328,7 +328,6 @@ rule summarize_results:
         "results/{dataset}/MX1_MX2_plot.pdf",
         "results/{dataset}/pairwise_correlation.pdf",
         "results/{dataset}/PCA_biplot.pdf",
-        "results/{dataset}/3D_plot_of_PCA.pdf",
         "results/{dataset}/spearman_correlation.pdf",
         "results/{dataset}/wilcoxon_test.pdf",
         "results/{dataset}/jonckheere_test.pdf",

@@ -11,7 +11,7 @@ validation_gene: "MX2"
 validation_gene1: "ACE2"
 
 # Specifies yet another gene used for validation or comparison purposes
-validation_gene2: "BCG"
+validation_gene2: "BSG"
 
 # Specifies the condition or disease group of interest
 disease_condition: "COVID19"
@@ -32,7 +32,7 @@ data_positivity_column_name: "sars-cov-2 positivity:ch1"
 # Specify if the raw unprocessed data is provided locally or if it has to be downloaded
 # TRUE if the raw data is provided locally
 # FALSE otherwise
-is_raw_data_locally: TRUE
+is_raw_data_locally: FALSE
 
 # Specify the directory where the raw data should be saved if the data should be downloaded.
 # This will save the data in a directory named as the geo dataset identifier.

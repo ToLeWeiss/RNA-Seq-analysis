@@ -19,7 +19,7 @@ if (toupper(snakemake@config[["is_raw_data_locally"]]) == FALSE) {
       dataset, dataset
    )
    saving_directory <- paste(
-      dirname((snakemake@config[["raw_data_saving_dir"]])),
+      snakemake@config[["raw_data_saving_dir"]],
       "/",
       dataset,
       sep = ""
@@ -28,9 +28,10 @@ if (toupper(snakemake@config[["is_raw_data_locally"]]) == FALSE) {
    if (!dir.exists(saving_directory)) {
       dir.create(saving_directory, recursive = TRUE)
    }
-   download.file(url, paste(saving_directory, "/", "raw_reads.gz", sep = ""))
+   raw_reads_filepath <- paste(saving_directory, "/", "raw_reads.gz", sep = "")
+   download.file(url, raw_reads_filepath)
    # Read raw count data from file
-   raw_counts <- read.delim(snakemake@config[["raw_data_saving_dir"]],
+   raw_counts <- read.delim(raw_reads_filepath,
       stringsAsFactors = FALSE,
       sep = " "
    )
