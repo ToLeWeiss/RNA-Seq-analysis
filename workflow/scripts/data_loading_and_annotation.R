@@ -14,10 +14,13 @@ clindata <- data[["GSE152075_series_matrix.txt.gz"]]@phenoData@data
 if (toupper(snakemake@config[["is_raw_data_locally"]]) == FALSE) {
    # Get raw counts data from GEO database
    dataset <- snakemake@config[["geo_dataset"]]
+   # Generate the url for the raw counts of the specified dataset
    url <- sprintf(
       "https://www.ncbi.nlm.nih.gov/geo/download/?acc=%s&format=file&file=%s_raw_counts_GEO.txt.gz",
       dataset, dataset
    )
+   # Generate the saving directory thats specified in the config.yaml extended by a directory named 
+   # by the dtatset id.
    saving_directory <- paste(
       snakemake@config[["raw_data_saving_dir"]],
       "/",
@@ -29,6 +32,7 @@ if (toupper(snakemake@config[["is_raw_data_locally"]]) == FALSE) {
       dir.create(saving_directory, recursive = TRUE)
    }
    raw_reads_filepath <- paste(saving_directory, "/", "raw_reads.gz", sep = "")
+   # Download the raw counts data to {saving_directory}/{dataset}/raw_counts.gz
    download.file(url, raw_reads_filepath)
    # Read raw count data from file
    raw_counts <- read.delim(raw_reads_filepath,
@@ -36,6 +40,7 @@ if (toupper(snakemake@config[["is_raw_data_locally"]]) == FALSE) {
       sep = " "
    )
 } else {
+   # If the data is provided locally then read the local file
    raw_counts <- read.delim(snakemake@config[["local_raw_data_path"]],
       stringsAsFactors = FALSE,
       sep = " "

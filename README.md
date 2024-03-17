@@ -68,6 +68,16 @@ Ensure you have the required dependencies:
 
 ## References
 
+**STARS Protocol**
+
+- [Sanchis, P., Lavignolle, R., Abbate, M., Lage-Vickers, S., Vazquez, E., Cotignola, J., … Gueron, G. (2021).
+  Analysis workflow of publicly available RNA-sequencing datasets. STAR Protocols, 2(2), 100478.](doi:10.1016/j.xpro.2021.100478)
+
+**Original Paper**
+
+- [Bizzotto, J., Sanchis, P., Abbate, M., Lage-Vickers, S., Lavignolle, R., Toro, A., … Gueron, G. (2020). 
+  SARS-CoV-2 Infection Boosts MX1 Antiviral Effector in COVID-19 Patients. iScience, 23(10), 101585.](doi:10.1016/j.isci.2020.101585)
+
 **Snakemake**
 
 - [Mölder, F., Jablonski, K.P., Letcher, B., Hall, M.B., Tomkins-Tinch, C.H., Sochat, V., Forster, J., Lee, S., 
@@ -118,7 +128,6 @@ Ensure you have the required dependencies:
     - [The clinfun website](https://veseshan.github.io/clinfun/index.html)
 
     - [clinfun on GitHub](https://github.com/veseshan/clinfun)
-
 
 - GEOquery
     - [Davis S, Meltzer P (2007). “GEOquery: a bridge between the Gene Expression Omnibus (GEO) and BioConductor.” Bioinformatics, 14, 1846–1847.](https://doi.org/doi:10.18129/B9.bioc.GEOquery)
