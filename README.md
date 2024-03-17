@@ -34,7 +34,7 @@ Ensure you have the required dependencies:
     ```
 
 2. Change the [config](https://github.com/ToLeWeiss/RNA-Seq-analysis/tree/master/config/config.yaml) 
-   if necessary
+   if necessary (i.e. if you want to use a different GEO dataset or analyze a different set of genes)
 
 3. Activate the base environment and your snakemake environment
     <br/>
