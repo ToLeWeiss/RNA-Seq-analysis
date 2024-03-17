@@ -14,11 +14,15 @@ A workflow made with snakemake to analyse differential gene expression.
 RNA-Seq-analysis is an open software workflow using [snakmeake](https://snakemake.github.io/) to
 analyze clinical data following the procedure of, the STAR Protocol, [Analysis workflow of publicly
 available RNA-sequencing datasets](https://doi.org/10.1016/j.xpro.2021.100478).
+The two graphics below show the different rules in a graph and their respective files that will be in- and output.
+
+![Image of the respective rules with input and output files](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/filegraph.svg)
+![Image of the DAG(Directed Acyclic Graph)](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/dag.svg)
 
 ## Requirements
 
 Ensure you have the required dependencies:
-- mamba >= 1.5.5 (alternatively conda >= 23.11.0)
+- mamba >= 1.5 (alternatively conda >= 23.11)
 - an environment that has snakemake installed as specified [here](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 - a stable internet connection
 
@@ -61,22 +65,17 @@ Ensure you have the required dependencies:
     If you want to change the text from the report you can go to the [report directory](https://github.com/ToLeWeiss/RNA-Seq-analysis/tree/master/workflow/report)
     and change the respective *.rst file.
 
-![Image of the DAG(Directed Acyclic Graph)](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/dag.svg)
-
-![Image of the respective rules with input and output files](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/filegraph.svg)
-
-
 ## References
 
 **STARS Protocol**
 
 - [Sanchis, P., Lavignolle, R., Abbate, M., Lage-Vickers, S., Vazquez, E., Cotignola, J., … Gueron, G. (2021).
-  Analysis workflow of publicly available RNA-sequencing datasets. STAR Protocols, 2(2), 100478.](doi:10.1016/j.xpro.2021.100478)
+  Analysis workflow of publicly available RNA-sequencing datasets. STAR Protocols, 2(2), 100478.](https://doi.org/10.1016/j.xpro.2021.100478)
 
 **Original Paper**
 
 - [Bizzotto, J., Sanchis, P., Abbate, M., Lage-Vickers, S., Lavignolle, R., Toro, A., … Gueron, G. (2020). 
-  SARS-CoV-2 Infection Boosts MX1 Antiviral Effector in COVID-19 Patients. iScience, 23(10), 101585.](doi:10.1016/j.isci.2020.101585)
+  SARS-CoV-2 Infection Boosts MX1 Antiviral Effector in COVID-19 Patients. iScience, 23(10), 101585.](https://doi.org/10.1016/j.isci.2020.101585)
 
 **Snakemake**
 
