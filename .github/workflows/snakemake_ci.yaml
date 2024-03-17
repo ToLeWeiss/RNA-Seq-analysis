@@ -1,0 +1,38 @@
+name: snakemake_ci
+
+on:
+ push:
+    branches: [ master ]
+ pull_request:
+    branches: [ master ]
+
+jobs:
+ snakemake:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+
+    - name: Linting
+      uses: snakemake/snakemake-github-action@v1
+      with:
+        directory: '.test'
+        snakefile: 'workflow/Snakefile'
+        args: '--lint'
+
+    - name: Testing
+      uses: snakemake/snakemake-github-action@v1
+      with:
+        directory: '.test'
+        snakefile: 'workflow/Snakefile'
+        args: '--cores 1 --use-conda --conda-cleanup-pkgs cache'
+        stagein: ''
+        show-disk-usage-on-error: true
+
+    - name: Create container file
+      uses: snakemake/snakemake-github-action@v1
+      with:
+        snakefile: 'workflow/Snakefile'
+        task: 'containerize'
