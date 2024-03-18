@@ -16,14 +16,14 @@ analyze clinical data following the procedure of, the STAR Protocol, [Analysis w
 available RNA-sequencing datasets](https://doi.org/10.1016/j.xpro.2021.100478).
 The two graphics below show the different rules in a graph and their respective files that will be in- and output.
 
-![Image of the respective rules with input and output files](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/filegraph.svg)
 ![Image of the DAG(Directed Acyclic Graph)](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/dag.svg)
+![Image of the respective rules with input and output files](https://github.com/ToLeWeiss/RNA-Seq-analysis/blob/master/filegraph.svg)
 
 ## Requirements
 
 Ensure you have the required dependencies:
 - mamba >= 1.5 (alternatively conda >= 23.11)
-- an environment that has snakemake installed as specified [here](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
+- an environment that has snakemake >= 8.5 installed as specified [here](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 - a stable internet connection
 
 ## Installation and application

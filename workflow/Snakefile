@@ -41,10 +41,10 @@ rule load_and_annotate_data:
         "scripts/data_loading_and_annotation.R"
 
 
-# Rule for plotting MX1
-rule plot_MX1:
+# Rule for plotting the target gene.
+rule plot_target_gene:
     """
-    This rule generates a plot for MX1, using normalized counts and clinical data.
+    This rule generates a plot for the target gene, using normalized counts and clinical data.
     The output is a PDF file containing the plot, which is stored in the results directory.
     """
     conda:
@@ -54,20 +54,21 @@ rule plot_MX1:
         "tmp/{dataset}/clindata.csv"
     output:
         report(
-            "results/{dataset}/MX1_plot.pdf",
-            caption="report/MX1_plot.rst", 
+            "results/{dataset}/target_gene_plot.pdf",
+            caption="report/target_gene_plot.rst", 
             category="Step 2"
         )
     log:
-        "logs/{dataset}/MX1_plot.log"
+        "logs/{dataset}/target_gene_plot.log"
     script:
-        "scripts/plot_MX1.R"
+        "scripts/plot_target_gene.R"
 
 
 # Rule for calculating Spearman correlation
 rule spearman_correlation:
     """
-    This rule calculates the Spearman correlation between normalized counts and clinical data.
+    This rule calculates the Spearman correlation between the expression levels of two genes,
+    the target gene and the validation gene, in individuals who tested positive.
     The output is a text file containing the correlation results, which is stored in the results directory.
     """
     conda:
@@ -90,7 +91,8 @@ rule spearman_correlation:
 # Rule for performing Wilcoxon test
 rule wilcoxon_test:
     """
-    This rule performs the Wilcoxon test to compare the normalized counts and clinical data.
+    This rule performs the Wilcoxon test to determine whether there is a significant difference in
+    the expression levels of the target gene between healthy and ill individuals.
     The output is a text file containing the test results, which is stored in the results directory.
     """
     conda:
@@ -113,7 +115,9 @@ rule wilcoxon_test:
 # Rule for performing Jonckheere test
 rule jonckheere_test:
     """
-    This rule performs the Jonckheere test to compare the normalized counts and clinical data.
+    This rule performs the Jonckheere test to determine if there is a significant decreasing trend in the
+    expression levels of the target gene across different age categories in individuals who tested
+    positive for COVID-19.
     The output is a text file containing the test results, which is stored in the results directory.
     """
     conda:
@@ -133,10 +137,10 @@ rule jonckheere_test:
         "scripts/jonckheere_test.R"
 
 
-# Rule for plotting MX1 and MX2
-rule plot_MX1_MX2:
+# Rule for plotting target_gene and validation_gene
+rule plot_target_gene_validation_gene:
     """
-    This rule generates a plot comparing MX1 and MX2, using normalized counts and clinical data.
+    This rule generates a plot comparing target_gene and validation_gene, using normalized counts and clinical data.
     The output is a PDF file containing the plot, which is stored in the results directory.
     """
     conda:
@@ -146,14 +150,14 @@ rule plot_MX1_MX2:
         "tmp/{dataset}/clindata.csv"
     output:
         report(
-            "results/{dataset}/MX1_MX2_plot.pdf",
-            caption="report/MX1_MX2_plot.rst",
+            "results/{dataset}/target_gene_validation_gene_plot.pdf",
+            caption="report/target_gene_validation_gene_plot.rst",
             category="Step 5"
         )
     log:
-        "logs/{dataset}/MX1_MX2_plot.log"
+        "logs/{dataset}/target_gene_validation_gene_plot.log"
     script:
-        "scripts/plot_MX1_MX2.R"
+        "scripts/plot_target_gene_validation_gene.R"
 
 
 # Rule for converting Spearman correlation results to PDF
@@ -324,8 +328,8 @@ rule summarize_results:
     conda:
         "envs/summary.yaml"
     input:
-        "results/{dataset}/MX1_plot.pdf",
-        "results/{dataset}/MX1_MX2_plot.pdf",
+        "results/{dataset}/target_gene_plot.pdf",
+        "results/{dataset}/target_gene_validation_gene_plot.pdf",
         "results/{dataset}/pairwise_correlation.pdf",
         "results/{dataset}/PCA_biplot.pdf",
         "results/{dataset}/spearman_correlation.pdf",

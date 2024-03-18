@@ -1,0 +1,43 @@
+# Specifies the GEO dataset ID for retrieving RNA sequence data
+geo_dataset: "GSE152075"
+
+# Specifies the gene of interest for analysis
+target_gene: "MX1"
+
+# Specifies a gene used for validation or comparison purposes
+validation_gene: "MX2"
+
+# Specifies an additional gene used for validation or comparison purposes
+validation_gene1: "ACE2"
+
+# Specifies yet another gene used for validation or comparison purposes
+validation_gene2: "BSG"
+
+# Specifies the condition or disease group of interest
+disease_condition: "COVID19"
+
+# Specifies the condition representing the healthy group for comparison
+health_condition: "HEALTHY"
+
+# Specifies the status attribute indicating the disease or health condition
+disease_status: "positivity"
+
+# Specify the name of the column of the data where the CT value is denoted
+data_ct_column_name: "n1_ct:ch1"
+
+# Specifythe name of the column where the positivity of the patients condition in regards
+# to the disease in question is denoted
+data_positivity_column_name: "sars-cov-2 positivity:ch1"
+
+# Specify if the raw unprocessed data is provided locally or if it has to be downloaded
+# TRUE if the raw data is provided locally
+# FALSE otherwise
+is_raw_data_locally: FALSE
+
+# Specify the directory where the raw data should be saved if the data should be downloaded.
+# This will save the data in a directory named as the geo dataset identifier.
+raw_data_saving_dir: "resources"
+
+# If the data is provided locally then here should be the relative or absolute path to the 
+# raw data
+local_raw_data_path: "resources/GSE152075/raw_reads.gz"

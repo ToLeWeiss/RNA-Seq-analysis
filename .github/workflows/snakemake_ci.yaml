@@ -25,14 +25,10 @@ jobs:
     - name: Testing
       uses: snakemake/snakemake-github-action@v1
       with:
-        directory: '.'
+          #TODO: Make following a viable directory for testing 
+        directory: '.test'
         snakefile: 'workflow/Snakefile'
-        args: '--cores 1 --use-conda --conda-cleanup-pkgs cache'
+        args: '--configfile .test/config-simple/config.yaml --use-conda --show-failed-logs --conda-cleanup-pkgs cache --dryrun'
         stagein: ''
         show-disk-usage-on-error: true
 
-    - name: Create container file
-      uses: snakemake/snakemake-github-action@v1
-      with:
-        snakefile: 'workflow/Snakefile'
-        task: 'containerize'
