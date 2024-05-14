@@ -17,5 +17,5 @@ This R script utilizes the `GEOquery` and `DESeq2` libraries for retrieving gene
    - Estimates size factors and normalizes counts using the `DESeq2` package.
    
 4. **Output:**
-   - Writes normalized counts data and modified clinical data to output CSV files specified in the Snakemake output.
+   - Writes normalized counts data and modified clinical data to output CSV files in the tmp directory.
    - Writes raw counts data to a separate output file.

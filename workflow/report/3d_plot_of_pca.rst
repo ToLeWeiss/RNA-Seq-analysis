@@ -23,4 +23,4 @@ This R script utilizes the `canvasXpress` library to create a 3D scatter plot vi
    - Disables loess fit visualization.
    
 5. **Output:**
-   - Saves the 3D scatter plot visualization as a PDF file specified in the Snakemake output.
+   - Saves the 3D scatter plot visualization as a HTML file specified in the results directory.

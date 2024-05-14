@@ -21,4 +21,4 @@ This R script utilizes the `factoextra` library to perform Principal Component A
    - Provides a title for the plot.
 
 5. **Output:**
-   - Saves the PCA biplot visualization as a PDF file specified in the Snakemake output.
+   - Saves the PCA biplot visualization as a PDF file specified in the results directory.

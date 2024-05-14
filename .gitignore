@@ -4,3 +4,4 @@ results/
 tmp/
 logs/
 report.html
+run_all.sh

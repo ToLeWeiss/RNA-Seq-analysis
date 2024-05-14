@@ -16,12 +16,12 @@
 <text text-anchor="start" x="1147.5" y="-65.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1151.5" y="-65.8" font-family="sans" font-weight="bold" font-size="14.00">↪ input</text>
 <text text-anchor="start" x="1209.5" y="-65.8" font-family="sans" font-size="10.00"> </text>
-<text text-anchor="start" x="1147.5" y="-46" font-family="monospace" font-size="10.00">results/GSE152075/3D_plot_of_PCA.html</text>
+<text text-anchor="start" x="1147.5" y="-46" font-family="monospace" font-size="10.00">results/GSE152075/3D_plot_of_pca.html</text>
 <text text-anchor="start" x="1147.5" y="-28" font-family="monospace" font-size="10.00">results/GSE152075/summary.pdf</text>
 <text text-anchor="start" x="1363.5" y="-10" font-family="sans" font-size="10.00"> &#160;</text>
-<polygon fill="#d0d957" stroke="#d0d957" points="1141.5,-80 1141.5,-80 1377.5,-80 1377.5,-80 1141.5,-80"/>
-<polygon fill="#d0d957" stroke="#d0d957" points="1141.5,-22 1141.5,-22 1377.5,-22 1377.5,-22 1141.5,-22"/>
-<polygon fill="none" stroke="#d0d957" stroke-width="2" points="1141,-1 1141,-109 1376,-109 1376,-1 1141,-1"/>
+<polygon fill="#add957" stroke="#add957" points="1141.5,-80 1141.5,-80 1377.5,-80 1377.5,-80 1141.5,-80"/>
+<polygon fill="#add957" stroke="#add957" points="1141.5,-22 1141.5,-22 1377.5,-22 1377.5,-22 1141.5,-22"/>
+<polygon fill="none" stroke="#add957" stroke-width="2" points="1141,-1 1141,-109 1376,-109 1376,-1 1141,-1"/>
 </g>
 <!-- 1 -->
 <g id="node2" class="node">
@@ -30,10 +30,10 @@
 <text text-anchor="start" x="943.5" y="-341.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="947.5" y="-341.8" font-family="sans" font-weight="bold" font-size="14.00">↪ input</text>
 <text text-anchor="start" x="1005.5" y="-341.8" font-family="sans" font-size="10.00"> </text>
-<text text-anchor="start" x="943.5" y="-322" font-family="monospace" font-size="10.00">results/{dataset}/PCA_biplot.pdf</text>
-<text text-anchor="start" x="943.5" y="-304" font-family="monospace" font-size="10.00">results/{dataset}/histogram.pdf</text>
-<text text-anchor="start" x="943.5" y="-286" font-family="monospace" font-size="10.00">results/{dataset}/jonckheere_test.pdf</text>
-<text text-anchor="start" x="943.5" y="-268" font-family="monospace" font-size="10.00">results/{dataset}/pairwise_correlation.pdf</text>
+<text text-anchor="start" x="943.5" y="-322" font-family="monospace" font-size="10.00">results/{dataset}/histogram.pdf</text>
+<text text-anchor="start" x="943.5" y="-304" font-family="monospace" font-size="10.00">results/{dataset}/jonckheere_test.pdf</text>
+<text text-anchor="start" x="943.5" y="-286" font-family="monospace" font-size="10.00">results/{dataset}/pairwise_correlation.pdf</text>
+<text text-anchor="start" x="943.5" y="-268" font-family="monospace" font-size="10.00">results/{dataset}/pca_biplot.pdf</text>
 <text text-anchor="start" x="943.5" y="-250" font-family="monospace" font-size="10.00">results/{dataset}/spearman_correlation.pdf</text>
 <text text-anchor="start" x="943.5" y="-232" font-family="monospace" font-size="10.00">results/{dataset}/target_gene_plot.pdf</text>
 <text text-anchor="start" x="943.5" y="-214" font-family="monospace" font-size="10.00">results/{dataset}/target_gene_validation_gene_plot.pdf</text>
@@ -42,9 +42,9 @@
 <text text-anchor="start" x="1194.5" y="-175.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1264.5" y="-175.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="943.5" y="-156" font-family="monospace" font-size="10.00">results/{dataset}/summary.pdf</text>
-<polygon fill="#57d98b" stroke="#57d98b" points="937.5,-356 937.5,-356 1275.5,-356 1275.5,-356 937.5,-356"/>
-<polygon fill="#57d98b" stroke="#57d98b" points="937.5,-190 937.5,-190 1275.5,-190 1275.5,-190 937.5,-190"/>
-<polygon fill="none" stroke="#57d98b" stroke-width="2" points="937,-147 937,-385 1274,-385 1274,-147 937,-147"/>
+<polygon fill="#d97957" stroke="#d97957" points="937.5,-356 937.5,-356 1275.5,-356 1275.5,-356 937.5,-356"/>
+<polygon fill="#d97957" stroke="#d97957" points="937.5,-190 937.5,-190 1275.5,-190 1275.5,-190 937.5,-190"/>
+<polygon fill="none" stroke="#d97957" stroke-width="2" points="937,-147 937,-385 1274,-385 1274,-147 937,-147"/>
 </g>
 <!-- 1&#45;&gt;0 -->
 <g id="edge1" class="edge">
@@ -65,12 +65,12 @@
 <text text-anchor="start" x="162.5" y="-451.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="232.5" y="-451.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="7.5" y="-432" font-family="monospace" font-size="10.00">results/{dataset}/target_gene_plot.pdf</text>
-<polygon fill="#d97957" stroke="#d97957" points="1.5,-524 1.5,-524 243.5,-524 243.5,-524 1.5,-524"/>
-<polygon fill="#d97957" stroke="#d97957" points="1.5,-466 1.5,-466 243.5,-466 243.5,-466 1.5,-466"/>
-<polygon fill="none" stroke="#d97957" stroke-width="2" points="1,-423 1,-553 242,-553 242,-423 1,-423"/>
+<polygon fill="#57d9d0" stroke="#57d9d0" points="1.5,-524 1.5,-524 243.5,-524 243.5,-524 1.5,-524"/>
+<polygon fill="#57d9d0" stroke="#57d9d0" points="1.5,-466 1.5,-466 243.5,-466 243.5,-466 1.5,-466"/>
+<polygon fill="none" stroke="#57d9d0" stroke-width="2" points="1,-423 1,-553 242,-553 242,-423 1,-423"/>
 </g>
 <!-- 2&#45;&gt;1 -->
-<g id="edge4" class="edge">
+<g id="edge7" class="edge">
 <title>2&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M243.2,-424.89C245.98,-423.88 248.75,-422.92 251.5,-422 477.63,-346.66 750.36,-305.25 925.77,-284.6"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="926.35,-288.05 935.87,-283.42 925.54,-281.1 926.35,-288.05"/>
@@ -86,9 +86,9 @@
 <text text-anchor="start" x="984.5" y="-822" font-family="monospace" font-size="10.00">tmp/{dataset}/clindata.csv</text>
 <text text-anchor="start" x="984.5" y="-804" font-family="monospace" font-size="10.00">tmp/{dataset}/norm_counts.csv</text>
 <text text-anchor="start" x="984.5" y="-786" font-family="monospace" font-size="10.00">tmp/{dataset}/raw_counts.txt</text>
-<polygon fill="#57bfd9" stroke="#57bfd9" points="978.5,-874 978.5,-874 1234.5,-874 1234.5,-874 978.5,-874"/>
-<polygon fill="#57bfd9" stroke="#57bfd9" points="978.5,-856 978.5,-856 1234.5,-856 1234.5,-856 978.5,-856"/>
-<polygon fill="none" stroke="#57bfd9" stroke-width="2" points="978,-777 978,-903 1233,-903 1233,-777 978,-777"/>
+<polygon fill="#8bd957" stroke="#8bd957" points="978.5,-874 978.5,-874 1234.5,-874 1234.5,-874 978.5,-874"/>
+<polygon fill="#8bd957" stroke="#8bd957" points="978.5,-856 978.5,-856 1234.5,-856 1234.5,-856 978.5,-856"/>
+<polygon fill="none" stroke="#8bd957" stroke-width="2" points="978,-777 978,-903 1233,-903 1233,-777 978,-777"/>
 </g>
 <!-- 3&#45;&gt;2 -->
 <g id="edge11" class="edge">
@@ -109,9 +109,9 @@
 <text text-anchor="start" x="531.5" y="-451.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="601.5" y="-451.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="268.5" y="-432" font-family="monospace" font-size="10.00">results/{dataset}/target_gene_validation_gene_plot.pdf</text>
-<polygon fill="#8bd957" stroke="#8bd957" points="262.5,-524 262.5,-524 612.5,-524 612.5,-524 262.5,-524"/>
-<polygon fill="#8bd957" stroke="#8bd957" points="262.5,-466 262.5,-466 612.5,-466 612.5,-466 262.5,-466"/>
-<polygon fill="none" stroke="#8bd957" stroke-width="2" points="262,-423 262,-553 611,-553 611,-423 262,-423"/>
+<polygon fill="#d99c57" stroke="#d99c57" points="262.5,-524 262.5,-524 612.5,-524 612.5,-524 262.5,-524"/>
+<polygon fill="#d99c57" stroke="#d99c57" points="262.5,-466 262.5,-466 612.5,-466 612.5,-466 262.5,-466"/>
+<polygon fill="none" stroke="#d99c57" stroke-width="2" points="262,-423 262,-553 611,-553 611,-423 262,-423"/>
 </g>
 <!-- 3&#45;&gt;4 -->
 <g id="edge12" class="edge">
@@ -132,9 +132,9 @@
 <text text-anchor="start" x="816.5" y="-451.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="886.5" y="-451.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="637.5" y="-432" font-family="monospace" font-size="10.00">results/{dataset}/pairwise_correlation.pdf</text>
-<polygon fill="#5779d9" stroke="#5779d9" points="631.5,-524 631.5,-524 897.5,-524 897.5,-524 631.5,-524"/>
-<polygon fill="#5779d9" stroke="#5779d9" points="631.5,-466 631.5,-466 897.5,-466 897.5,-466 631.5,-466"/>
-<polygon fill="none" stroke="#5779d9" stroke-width="2" points="631,-423 631,-553 896,-553 896,-423 631,-423"/>
+<polygon fill="#57d968" stroke="#57d968" points="631.5,-524 631.5,-524 897.5,-524 897.5,-524 631.5,-524"/>
+<polygon fill="#57d968" stroke="#57d968" points="631.5,-466 631.5,-466 897.5,-466 897.5,-466 631.5,-466"/>
+<polygon fill="none" stroke="#57d968" stroke-width="2" points="631,-423 631,-553 896,-553 896,-423 631,-423"/>
 </g>
 <!-- 3&#45;&gt;5 -->
 <g id="edge13" class="edge">
@@ -145,7 +145,7 @@
 <!-- 6 -->
 <g id="node7" class="node">
 <title>6</title>
-<text text-anchor="start" x="796.5" y="-710.6" font-family="sans" font-weight="bold" font-size="18.00">PCA_biplot</text>
+<text text-anchor="start" x="799.5" y="-710.6" font-family="sans" font-weight="bold" font-size="18.00">pca_biplot</text>
 <text text-anchor="start" x="754.5" y="-686.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="758.5" y="-686.8" font-family="sans" font-weight="bold" font-size="14.00">↪ input</text>
 <text text-anchor="start" x="816.5" y="-686.8" font-family="sans" font-size="10.00"> </text>
@@ -154,10 +154,10 @@
 <text text-anchor="start" x="869.5" y="-628.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="873.5" y="-628.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="943.5" y="-628.8" font-family="sans" font-size="10.00"> </text>
-<text text-anchor="start" x="754.5" y="-609" font-family="monospace" font-size="10.00">results/{dataset}/PCA_biplot.pdf</text>
-<polygon fill="#add957" stroke="#add957" points="748.5,-701 748.5,-701 954.5,-701 954.5,-701 748.5,-701"/>
-<polygon fill="#add957" stroke="#add957" points="748.5,-643 748.5,-643 954.5,-643 954.5,-643 748.5,-643"/>
-<polygon fill="none" stroke="#add957" stroke-width="2" points="748,-600 748,-730 953,-730 953,-600 748,-600"/>
+<text text-anchor="start" x="754.5" y="-609" font-family="monospace" font-size="10.00">results/{dataset}/pca_biplot.pdf</text>
+<polygon fill="#579cd9" stroke="#579cd9" points="748.5,-701 748.5,-701 954.5,-701 954.5,-701 748.5,-701"/>
+<polygon fill="#579cd9" stroke="#579cd9" points="748.5,-643 748.5,-643 954.5,-643 954.5,-643 748.5,-643"/>
+<polygon fill="none" stroke="#579cd9" stroke-width="2" points="748,-600 748,-730 953,-730 953,-600 748,-600"/>
 </g>
 <!-- 3&#45;&gt;6 -->
 <g id="edge14" class="edge">
@@ -178,9 +178,9 @@
 <text text-anchor="start" x="1158.5" y="-628.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1228.5" y="-628.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="979.5" y="-609" font-family="monospace" font-size="10.00">results/{dataset}/spearman_correlation.txt</text>
-<polygon fill="#68d957" stroke="#68d957" points="973.5,-701 973.5,-701 1239.5,-701 1239.5,-701 973.5,-701"/>
-<polygon fill="#68d957" stroke="#68d957" points="973.5,-643 973.5,-643 1239.5,-643 1239.5,-643 973.5,-643"/>
-<polygon fill="none" stroke="#68d957" stroke-width="2" points="973,-600 973,-730 1238,-730 1238,-600 973,-600"/>
+<polygon fill="#d0d957" stroke="#d0d957" points="973.5,-701 973.5,-701 1239.5,-701 1239.5,-701 973.5,-701"/>
+<polygon fill="#d0d957" stroke="#d0d957" points="973.5,-643 973.5,-643 1239.5,-643 1239.5,-643 973.5,-643"/>
+<polygon fill="none" stroke="#d0d957" stroke-width="2" points="973,-600 973,-730 1238,-730 1238,-600 973,-600"/>
 </g>
 <!-- 3&#45;&gt;8 -->
 <g id="edge16" class="edge">
@@ -201,9 +201,9 @@
 <text text-anchor="start" x="1401.5" y="-628.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1471.5" y="-628.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1264.5" y="-609" font-family="monospace" font-size="10.00">results/{dataset}/wilcoxon_test.txt</text>
-<polygon fill="#579cd9" stroke="#579cd9" points="1258.5,-701 1258.5,-701 1482.5,-701 1482.5,-701 1258.5,-701"/>
-<polygon fill="#579cd9" stroke="#579cd9" points="1258.5,-643 1258.5,-643 1482.5,-643 1482.5,-643 1258.5,-643"/>
-<polygon fill="none" stroke="#579cd9" stroke-width="2" points="1258,-600 1258,-730 1481,-730 1481,-600 1258,-600"/>
+<polygon fill="#57d9ad" stroke="#57d9ad" points="1258.5,-701 1258.5,-701 1482.5,-701 1482.5,-701 1258.5,-701"/>
+<polygon fill="#57d9ad" stroke="#57d9ad" points="1258.5,-643 1258.5,-643 1482.5,-643 1482.5,-643 1258.5,-643"/>
+<polygon fill="none" stroke="#57d9ad" stroke-width="2" points="1258,-600 1258,-730 1481,-730 1481,-600 1258,-600"/>
 </g>
 <!-- 3&#45;&gt;10 -->
 <g id="edge18" class="edge">
@@ -224,9 +224,9 @@
 <text text-anchor="start" x="1656.5" y="-628.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1726.5" y="-628.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1507.5" y="-609" font-family="monospace" font-size="10.00">results/{dataset}/jonckheere_test.txt</text>
-<polygon fill="#57d9d0" stroke="#57d9d0" points="1501.5,-701 1501.5,-701 1737.5,-701 1737.5,-701 1501.5,-701"/>
-<polygon fill="#57d9d0" stroke="#57d9d0" points="1501.5,-643 1501.5,-643 1737.5,-643 1737.5,-643 1501.5,-643"/>
-<polygon fill="none" stroke="#57d9d0" stroke-width="2" points="1501,-600 1501,-730 1736,-730 1736,-600 1501,-600"/>
+<polygon fill="#d9bf57" stroke="#d9bf57" points="1501.5,-701 1501.5,-701 1737.5,-701 1737.5,-701 1501.5,-701"/>
+<polygon fill="#d9bf57" stroke="#d9bf57" points="1501.5,-643 1501.5,-643 1737.5,-643 1737.5,-643 1501.5,-643"/>
+<polygon fill="none" stroke="#d9bf57" stroke-width="2" points="1501,-600 1501,-730 1736,-730 1736,-600 1501,-600"/>
 </g>
 <!-- 3&#45;&gt;12 -->
 <g id="edge20" class="edge">
@@ -248,9 +248,9 @@
 <text text-anchor="start" x="1966.5" y="-619.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="2036.5" y="-619.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1762.5" y="-600" font-family="monospace" font-size="10.00">results/{dataset}/histogram.pdf</text>
-<polygon fill="#57d9ad" stroke="#57d9ad" points="1756.5,-710 1756.5,-710 2047.5,-710 2047.5,-710 1756.5,-710"/>
-<polygon fill="#57d9ad" stroke="#57d9ad" points="1756.5,-634 1756.5,-634 2047.5,-634 2047.5,-634 1756.5,-634"/>
-<polygon fill="none" stroke="#57d9ad" stroke-width="2" points="1756.5,-591 1756.5,-739 2046.5,-739 2046.5,-591 1756.5,-591"/>
+<polygon fill="#5779d9" stroke="#5779d9" points="1756.5,-710 1756.5,-710 2047.5,-710 2047.5,-710 1756.5,-710"/>
+<polygon fill="#5779d9" stroke="#5779d9" points="1756.5,-634 1756.5,-634 2047.5,-634 2047.5,-634 1756.5,-634"/>
+<polygon fill="none" stroke="#5779d9" stroke-width="2" points="1756.5,-591 1756.5,-739 2046.5,-739 2046.5,-591 1756.5,-591"/>
 </g>
 <!-- 3&#45;&gt;13 -->
 <g id="edge21" class="edge">
@@ -261,7 +261,7 @@
 <!-- 14 -->
 <g id="node15" class="node">
 <title>14</title>
-<text text-anchor="start" x="1685" y="-311.6" font-family="sans" font-weight="bold" font-size="18.00">plot_of_PCA</text>
+<text text-anchor="start" x="1688" y="-311.6" font-family="sans" font-weight="bold" font-size="18.00">plot_of_pca</text>
 <text text-anchor="start" x="1632.5" y="-287.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1636.5" y="-287.8" font-family="sans" font-weight="bold" font-size="14.00">↪ input</text>
 <text text-anchor="start" x="1694.5" y="-287.8" font-family="sans" font-size="10.00"> </text>
@@ -270,10 +270,10 @@
 <text text-anchor="start" x="1777.5" y="-229.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1781.5" y="-229.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1851.5" y="-229.8" font-family="sans" font-size="10.00"> </text>
-<text text-anchor="start" x="1632.5" y="-210" font-family="monospace" font-size="10.00">results/{dataset}/3D_plot_of_PCA.html</text>
-<polygon fill="#d99c57" stroke="#d99c57" points="1626.5,-302 1626.5,-302 1862.5,-302 1862.5,-302 1626.5,-302"/>
-<polygon fill="#d99c57" stroke="#d99c57" points="1626.5,-244 1626.5,-244 1862.5,-244 1862.5,-244 1626.5,-244"/>
-<polygon fill="none" stroke="#d99c57" stroke-width="2" points="1626,-201 1626,-331 1861,-331 1861,-201 1626,-201"/>
+<text text-anchor="start" x="1632.5" y="-210" font-family="monospace" font-size="10.00">results/{dataset}/3D_plot_of_pca.html</text>
+<polygon fill="#57d98b" stroke="#57d98b" points="1626.5,-302 1626.5,-302 1862.5,-302 1862.5,-302 1626.5,-302"/>
+<polygon fill="#57d98b" stroke="#57d98b" points="1626.5,-244 1626.5,-244 1862.5,-244 1862.5,-244 1626.5,-244"/>
+<polygon fill="none" stroke="#57d98b" stroke-width="2" points="1626,-201 1626,-331 1861,-331 1861,-201 1626,-201"/>
 </g>
 <!-- 3&#45;&gt;14 -->
 <g id="edge22" class="edge">
@@ -282,19 +282,19 @@
 <polygon fill="grey" stroke="grey" stroke-width="2" points="1850.84,-335.2 1840.71,-332.1 1846.7,-340.84 1850.84,-335.2"/>
 </g>
 <!-- 4&#45;&gt;1 -->
-<g id="edge7" class="edge">
+<g id="edge4" class="edge">
 <title>4&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M612.25,-424.78C615.02,-423.85 617.77,-422.92 620.5,-422 721.35,-388.08 834.58,-351.79 926.26,-322.86"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="927.42,-326.16 935.91,-319.82 925.32,-319.49 927.42,-326.16"/>
 </g>
 <!-- 5&#45;&gt;1 -->
-<g id="edge10" class="edge">
+<g id="edge5" class="edge">
 <title>5&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M864.72,-421.89C884.55,-409.13 905.88,-395.41 927.36,-381.59"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="929.41,-384.44 935.92,-376.08 925.62,-378.55 929.41,-384.44"/>
 </g>
 <!-- 6&#45;&gt;1 -->
-<g id="edge6" class="edge">
+<g id="edge9" class="edge">
 <title>6&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M885.44,-598.84C892.57,-584.3 899.67,-568.8 905.5,-554 927.93,-497.09 912.74,-474.28 944.5,-422 950.26,-412.51 956.75,-403.2 963.73,-394.16"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="966.5,-396.29 969.98,-386.28 961.02,-391.94 966.5,-396.29"/>
@@ -311,12 +311,12 @@
 <text text-anchor="start" x="1176.5" y="-460.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1246.5" y="-460.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="960.5" y="-441" font-family="monospace" font-size="10.00">results/{dataset}/spearman_correlation.pdf</text>
-<polygon fill="#57d968" stroke="#57d968" points="954.5,-515 954.5,-515 1257.5,-515 1257.5,-515 954.5,-515"/>
-<polygon fill="#57d968" stroke="#57d968" points="954.5,-475 954.5,-475 1257.5,-475 1257.5,-475 954.5,-475"/>
-<polygon fill="none" stroke="#57d968" stroke-width="2" points="954.5,-432 954.5,-544 1256.5,-544 1256.5,-432 954.5,-432"/>
+<polygon fill="#d95757" stroke="#d95757" points="954.5,-515 954.5,-515 1257.5,-515 1257.5,-515 954.5,-515"/>
+<polygon fill="#d95757" stroke="#d95757" points="954.5,-475 954.5,-475 1257.5,-475 1257.5,-475 954.5,-475"/>
+<polygon fill="none" stroke="#d95757" stroke-width="2" points="954.5,-432 954.5,-544 1256.5,-544 1256.5,-432 954.5,-432"/>
 </g>
 <!-- 7&#45;&gt;1 -->
-<g id="edge9" class="edge">
+<g id="edge3" class="edge">
 <title>7&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M1105.5,-430.92C1105.5,-420.07 1105.5,-408.31 1105.5,-396.22"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="1109,-396 1105.5,-386 1102,-396 1109,-396"/>
@@ -339,12 +339,12 @@
 <text text-anchor="start" x="1420.5" y="-460.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1490.5" y="-460.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1283.5" y="-441" font-family="monospace" font-size="10.00">results/{dataset}/wilcoxon_test.pdf</text>
-<polygon fill="#d95757" stroke="#d95757" points="1277.5,-515 1277.5,-515 1501.5,-515 1501.5,-515 1277.5,-515"/>
-<polygon fill="#d95757" stroke="#d95757" points="1277.5,-475 1277.5,-475 1501.5,-475 1501.5,-475 1277.5,-475"/>
-<polygon fill="none" stroke="#d95757" stroke-width="2" points="1277,-432 1277,-544 1500,-544 1500,-432 1277,-432"/>
+<polygon fill="#57bfd9" stroke="#57bfd9" points="1277.5,-515 1277.5,-515 1501.5,-515 1501.5,-515 1277.5,-515"/>
+<polygon fill="#57bfd9" stroke="#57bfd9" points="1277.5,-475 1277.5,-475 1501.5,-475 1501.5,-475 1277.5,-475"/>
+<polygon fill="none" stroke="#57bfd9" stroke-width="2" points="1277,-432 1277,-544 1500,-544 1500,-432 1277,-432"/>
 </g>
 <!-- 9&#45;&gt;1 -->
-<g id="edge3" class="edge">
+<g id="edge8" class="edge">
 <title>9&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M1316.35,-430.92C1300.88,-418.88 1283.93,-405.71 1266.57,-392.22"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="1268.62,-389.37 1258.58,-386 1264.33,-394.9 1268.62,-389.37"/>
@@ -367,12 +367,12 @@
 <text text-anchor="start" x="1683.5" y="-460.8" font-family="sans" font-weight="bold" font-size="14.00">output →</text>
 <text text-anchor="start" x="1753.5" y="-460.8" font-family="sans" font-size="10.00"> </text>
 <text text-anchor="start" x="1526.5" y="-441" font-family="monospace" font-size="10.00">results/{dataset}/jonckheere_test.pdf</text>
-<polygon fill="#d9bf57" stroke="#d9bf57" points="1520.5,-515 1520.5,-515 1764.5,-515 1764.5,-515 1520.5,-515"/>
-<polygon fill="#d9bf57" stroke="#d9bf57" points="1520.5,-475 1520.5,-475 1764.5,-475 1764.5,-475 1520.5,-475"/>
-<polygon fill="none" stroke="#d9bf57" stroke-width="2" points="1520,-432 1520,-544 1763,-544 1763,-432 1520,-432"/>
+<polygon fill="#68d957" stroke="#68d957" points="1520.5,-515 1520.5,-515 1764.5,-515 1764.5,-515 1520.5,-515"/>
+<polygon fill="#68d957" stroke="#68d957" points="1520.5,-475 1520.5,-475 1764.5,-475 1764.5,-475 1520.5,-475"/>
+<polygon fill="none" stroke="#68d957" stroke-width="2" points="1520,-432 1520,-544 1763,-544 1763,-432 1520,-432"/>
 </g>
 <!-- 11&#45;&gt;1 -->
-<g id="edge5" class="edge">
+<g id="edge6" class="edge">
 <title>11&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M1529.49,-430.98C1522.75,-427.88 1516.05,-424.86 1509.5,-422 1436.87,-390.26 1355.48,-358.36 1284.89,-331.81"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="1286.04,-328.5 1275.45,-328.27 1283.58,-335.06 1286.04,-328.5"/>
@@ -384,7 +384,7 @@
 <polygon fill="grey" stroke="grey" stroke-width="2" points="1636.3,-555.4 1634.14,-545.03 1629.36,-554.48 1636.3,-555.4"/>
 </g>
 <!-- 13&#45;&gt;1 -->
-<g id="edge8" class="edge">
+<g id="edge10" class="edge">
 <title>13&#45;&gt;1</title>
 <path fill="none" stroke="grey" stroke-width="2" d="M1880.71,-589.79C1861.62,-535.29 1827.88,-463.76 1773.5,-422 1716.72,-378.4 1686.25,-402.12 1616.5,-386 1506.46,-360.57 1383.14,-331.86 1285.22,-309.01"/>
 <polygon fill="grey" stroke="grey" stroke-width="2" points="1285.75,-305.54 1275.22,-306.68 1284.16,-312.36 1285.75,-305.54"/>

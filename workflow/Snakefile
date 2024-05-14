@@ -16,7 +16,7 @@ rule all:
     """
     input:
         f"results/{dataset}/summary.pdf",
-        f"results/{dataset}/3D_plot_of_PCA.html"
+        f"results/{dataset}/3d_plot_of_pca.html"
 
 # Rule to load and annotate data
 rule load_and_annotate_data:
@@ -226,50 +226,50 @@ rule jonckheere_test_to_pdf:
         "pandoc {input} -o {output} --pdf-engine=tectonic 2> {log}"
 
 
-# Rule for generating PCA biplot
-rule PCA_biplot:
+# Rule for generating pca biplot
+rule pca_biplot:
     """
-    This rule generates a biplot for Principal Component Analysis (PCA) using normalized counts and clinical data.
-    The output is a PDF file containing the PCA biplot, which is stored in the results directory.
+    This rule generates a biplot for Principal Component Analysis (pca) using normalized counts and clinical data.
+    The output is a PDF file containing the pca biplot, which is stored in the results directory.
     """
     conda:
-        "envs/PCA_biplot.yaml"
+        "envs/pca_biplot.yaml"
     input:
         "tmp/{dataset}/norm_counts.csv",
         "tmp/{dataset}/clindata.csv"
     output:
         report(
-            "results/{dataset}/PCA_biplot.pdf",
-            caption="report/PCA_biplot.rst",
+            "results/{dataset}/pca_biplot.pdf",
+            caption="report/pca_biplot.rst",
             category="Step 5"
         )
     log:
-        "logs/{dataset}/PCA_biplot.log"
+        "logs/{dataset}/pca_biplot.log"
     script:
-        "scripts/PCA_biplot.R"
+        "scripts/pca_biplot.R"
 
 
-# Rule for generating a 3D plot of PCA
-rule plot_of_PCA:
+# Rule for generating a 3d plot of pca
+rule plot_of_pca:
     """
-    This rule generates a 3D plot of PCA using normalized counts and clinical data.
-    The output is a PDF file containing the 3D plot, which is stored in the results directory.
+    This rule generates a 3d plot of pca using normalized counts and clinical data.
+    The output is a PDF file containing the 3d plot, which is stored in the results directory.
     """
     conda:
-        "envs/3D_plot.yaml"
+        "envs/3d_plot.yaml"
     input:
         "tmp/{dataset}/norm_counts.csv",
         "tmp/{dataset}/clindata.csv"
     output:
         report(
-            "results/{dataset}/3D_plot_of_PCA.html",
-            caption="report/3D_plot_of_PCA.rst",
+            "results/{dataset}/3d_plot_of_pca.html",
+            caption="report/3d_plot_of_pca.rst",
             category="Step 6"
         )
     log:
-        "logs/{dataset}/3D_plot_of_PCA.log"
+        "logs/{dataset}/3d_plot_of_pca.log"
     script:
-        "scripts/3D_plot_of_PCA.R"
+        "scripts/3d_plot_of_pca.R"
 
 
 # Rule for generating a histogram of selected data
@@ -331,7 +331,7 @@ rule summarize_results:
         "results/{dataset}/target_gene_plot.pdf",
         "results/{dataset}/target_gene_validation_gene_plot.pdf",
         "results/{dataset}/pairwise_correlation.pdf",
-        "results/{dataset}/PCA_biplot.pdf",
+        "results/{dataset}/pca_biplot.pdf",
         "results/{dataset}/spearman_correlation.pdf",
         "results/{dataset}/wilcoxon_test.pdf",
         "results/{dataset}/jonckheere_test.pdf",

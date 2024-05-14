@@ -1,7 +1,7 @@
 # RNA-Seq-analysis
 [![Snakemake](https://img.shields.io/badge/snakemake-≥8.5.3-brightgreen.svg?style=flat)](https://snakemake.readthedocs.io)
 <br/>
-A workflow made with snakemake to analyse differential gene expression.
+A workflow made with snakemake to analyse a specific gene expression.
 
 ## Contents
 
